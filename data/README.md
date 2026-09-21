@@ -55,8 +55,17 @@ Szabályok (a `validate.mjs` ellenőrzi):
 
 A korszakok közt a térkép egyenletesen csúsztatja át a műfajt, így a mozgás folyamatos.
 
-**Jelenleg négy műfajnak van korszaka** – techno, trance, hard techno, dubstep –, és
-ezek az én becsléseim, ellenőrizendők. A másik 35 egy helyben áll, amíg nem kap `eras` mezőt.
+**Jelenleg 17 műfajnak van korszaka a 39-ből**, összesen 63 pillanatképpel. Ezek az én
+becsléseim, ellenőrizendők. A maradék 22 egy helyben áll, amíg nem kap `eras` mezőt –
+ami rendben is van ott, ahol a műfaj tényleg nem mozdult (riddim, drone, footwork).
+
+Három eset, amit a korszakolás megoldott:
+
+- **uk-garage** – 1995-ben még egyenes 4/4, 1997-től 2-step. Az egyetlen műfaj, amelyik
+  **ritmusrácsot vált** a pályája közben.
+- **tearout** – a 2010-es brostep és a 2019 utáni hullám egy műfaj két korszaka, nem két
+  bejegyzés. A `notes` mező eddig nyitott kérdésként tartotta.
+- **progressive-house** – a 92-es brit és a 2010-es fesztiválos ugyanígy.
 
 ### A „változás" tengely
 

@@ -147,8 +147,9 @@ között erősen hatott rá.
 
 ## Mi kell még az adatba
 
-- **Korszakok a többi műfajhoz.** Most négynek van (techno, trance, hard techno, dubstep),
-  a másik 35 egy helyben áll. A mozgás csak annyira lesz élő, amennyire ez feltöltődik.
+- **Korszakok a többi műfajhoz.** Most 17-nek van a 39-ből, 63 pillanatképpel. 1995 és
+  2003 között egyszerre 10-12 műfaj mozog, 2020 után viszont egy sem – a közelmúlt
+  korszakolása hiányzik a leginkább.
 - **Még egy tengely?** A „változás" bekerült, és az ambient/drone ütközést megoldotta.
   A gabber viszont továbbra is a hiányra mutat: ott a lábdob már nem ritmus, hanem
   hangszín, és ezt a „főszereplő" tengely nem tudja kifejezni. Következő jelölt:
