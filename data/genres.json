@@ -14,6 +14,41 @@
       "change": 0.40,
       "summary": "Egyenes négyes lábdob, offbeat hi-hat, groove-központú. A dob és a basszus együtt adja a lüktetést, minden más rá van építve.",
       "externalInfluences": ["disco", "soul"],
+      "eras": [
+        {
+          "from": 1984,
+          "label": "chicagói",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 118, "max": 126, "felt": null },
+          "density": 2,
+          "lead": ["drums", "bass"],
+          "function": 1.0,
+          "change": 0.35,
+          "note": "Nyers gépzene, kevés réteg – a dobgép és a basszus, semmi több."
+        },
+        {
+          "from": 1993,
+          "label": "énekes",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 120, "max": 128, "felt": null },
+          "density": 3,
+          "lead": ["melody", "drums"],
+          "function": 1.0,
+          "change": 0.45,
+          "note": "Ének és akkordok kerülnek előtérbe, több réteg egyszerre."
+        },
+        {
+          "from": 2005,
+          "label": "mai",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 118, "max": 128, "felt": null },
+          "density": 2,
+          "lead": ["drums", "bass"],
+          "function": 1.0,
+          "change": 0.40,
+          "note": "Visszatérés a groove-hoz: megint a dob és a basszus viszi."
+        }
+      ],
       "drumPattern": {
         "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
         "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
@@ -94,6 +129,30 @@
       "change": 0.70,
       "summary": "Lassan épülő house: a változás perceken át tart, nem ütemeken.",
       "externalInfluences": [],
+      "eras": [
+        {
+          "from": 1992,
+          "label": "brit progresszív",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 124, "max": 128, "felt": null },
+          "density": 2,
+          "lead": ["timbre", "melody"],
+          "function": 0.95,
+          "change": 0.75,
+          "note": "Mély, ritka, lassan kibontakozó. A változás perceken át tart."
+        },
+        {
+          "from": 2010,
+          "label": "fesztiválos",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 126, "max": 132, "felt": null },
+          "density": 3,
+          "lead": ["melody"],
+          "function": 0.95,
+          "change": 0.70,
+          "note": "Nagyobb, dallamosabb, rövidebb ívekkel. Sokan már más műfajnak hallják – itt egy műfaj két korszaka."
+        }
+      ],
       "drumPattern": {
         "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
         "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
@@ -189,6 +248,30 @@
       "change": 0.35,
       "summary": "Ugyanaz a rács, mint a house-nál, de elvétellel: alig van réteg. Ami marad, az a dob és a hangszín apró változásai.",
       "externalInfluences": [],
+      "eras": [
+        {
+          "from": 1994,
+          "label": "korai",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 128, "max": 135, "felt": null },
+          "density": 1,
+          "lead": ["drums", "timbre"],
+          "function": 1.0,
+          "change": 0.30,
+          "note": "Gyorsabb és merevebb, mint a mai – a lassulás később jött."
+        },
+        {
+          "from": 2003,
+          "label": "mai",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 125, "max": 130, "felt": null },
+          "density": 1,
+          "lead": ["drums", "timbre"],
+          "function": 1.0,
+          "change": 0.35,
+          "note": "A tempó lejjebb kerül, a hangszín apró mozgásai kapnak több teret."
+        }
+      ],
       "drumPattern": {
         "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
         "snare": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
@@ -264,6 +347,41 @@
       "change": 0.60,
       "summary": "Szüntelen gördülő basszus a lábdob között, fölötte folyamatosan tekeredő, szűrt hangszínek. Dallam alig.",
       "externalInfluences": ["goa"],
+      "eras": [
+        {
+          "from": 1994,
+          "label": "goa",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 135, "max": 145, "felt": null },
+          "density": 4,
+          "lead": ["melody", "timbre"],
+          "function": 1.0,
+          "change": 0.70,
+          "note": "Még dallamos és keleties, a hangszín csak most veszi át a vezetést."
+        },
+        {
+          "from": 1999,
+          "label": "full-on",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 142, "max": 148, "felt": null },
+          "density": 4,
+          "lead": ["timbre"],
+          "function": 1.0,
+          "change": 0.55,
+          "note": "Gyorsabb, a dallam kiszorul, marad a gördülő basszus és a tekeredő hangszín."
+        },
+        {
+          "from": 2008,
+          "label": "mai",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 140, "max": 150, "felt": null },
+          "density": 4,
+          "lead": ["timbre"],
+          "function": 1.0,
+          "change": 0.60,
+          "note": "A tempósáv kiszélesedik, a hangszínmozgás visszanő."
+        }
+      ],
       "drumPattern": {
         "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
         "snare": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
@@ -304,6 +422,30 @@
       "change": 0.95,
       "summary": "Tört, aprólékosan vágott dobminták hallgatásra. A ritmus itt nem a test, hanem a figyelem dolga.",
       "externalInfluences": [],
+      "eras": [
+        {
+          "from": 1992,
+          "label": "korai",
+          "rhythmGrid": ["broken"],
+          "tempo": { "min": 110, "max": 140, "felt": null },
+          "density": 3,
+          "lead": ["timbre", "melody"],
+          "function": 0.3,
+          "change": 0.80,
+          "note": "Még dallamos és ütemvezérelt, közel a technóhoz."
+        },
+        {
+          "from": 1997,
+          "label": "vágott",
+          "rhythmGrid": ["broken"],
+          "tempo": { "min": 100, "max": 160, "felt": null },
+          "density": 3,
+          "lead": ["timbre", "drums"],
+          "function": 0.25,
+          "change": 0.95,
+          "note": "A dobminta szétesik és újraáll; szinte semmi nem ismétlődik."
+        }
+      ],
       "drumPattern": {
         "kick":  [1,0,0,1, 0,0,1,0, 0,1,0,0, 1,0,0,0],
         "snare": [0,0,0,0, 1,0,0,1, 0,0,0,0, 1,0,1,0],
@@ -448,6 +590,30 @@
       "change": 0.50,
       "summary": "Elvétel az egyenes rácsból: a lábdobok nagy része kimarad, a maradék elcsúszik. Swinges, botladozó groove.",
       "externalInfluences": ["US garage house", "jungle"],
+      "eras": [
+        {
+          "from": 1995,
+          "label": "korai, négyes rácson",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 128, "max": 132, "felt": null },
+          "density": 3,
+          "lead": ["melody", "drums"],
+          "function": 1.0,
+          "change": 0.45,
+          "note": "Még egyenes 4/4, énekmintákkal – a garage house közeli rokona."
+        },
+        {
+          "from": 1997,
+          "label": "2-step",
+          "rhythmGrid": ["two-step"],
+          "tempo": { "min": 130, "max": 135, "felt": null },
+          "density": 3,
+          "lead": ["drums"],
+          "function": 1.0,
+          "change": 0.50,
+          "note": "Elvétel: a lábdobok nagy része kimarad, a maradék elcsúszik. Itt vált rácsot a műfaj."
+        }
+      ],
       "drumPattern": {
         "kick":  [1,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0],
         "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
@@ -488,6 +654,30 @@
       "change": 0.80,
       "summary": "Felgyorsított, feldarabolt breakek sűrű szövete, alatta lassú, nehéz basszus. A dob és a basszus két külön tempóban él.",
       "externalInfluences": ["ragga", "reggae basszus"],
+      "eras": [
+        {
+          "from": 1993,
+          "label": "ragga",
+          "rhythmGrid": ["broken"],
+          "tempo": { "min": 155, "max": 165, "felt": null },
+          "density": 4,
+          "lead": ["drums"],
+          "function": 1.0,
+          "change": 0.85,
+          "note": "Sűrűbb és kapkodóbb, ragga énekmintákkal, folyton újravágott breakkel."
+        },
+        {
+          "from": 1995,
+          "label": "atmoszférikus",
+          "rhythmGrid": ["broken"],
+          "tempo": { "min": 160, "max": 170, "felt": null },
+          "density": 4,
+          "lead": ["drums"],
+          "function": 0.95,
+          "change": 0.80,
+          "note": "Nyugodtabb felületek a break alá, valamivel rendezettebb szerkezet."
+        }
+      ],
       "drumPattern": {
         "kick":  [1,0,0,0, 0,0,0,0, 0,0,1,0, 0,0,0,0],
         "snare": [0,0,0,0, 1,0,0,1, 0,0,0,0, 1,0,1,0],
@@ -508,6 +698,41 @@
       "change": 0.50,
       "summary": "A jungle rendezettebb utódja: állandó két lépéses dobváz, ami pihenő nélkül gördül tovább.",
       "externalInfluences": [],
+      "eras": [
+        {
+          "from": 1995,
+          "label": "korai",
+          "rhythmGrid": ["broken"],
+          "tempo": { "min": 168, "max": 174, "felt": null },
+          "density": 4,
+          "lead": ["drums", "bass"],
+          "function": 0.9,
+          "change": 0.65,
+          "note": "Még sokat örököl a jungle break-vagdosásából."
+        },
+        {
+          "from": 1997,
+          "label": "techstep",
+          "rhythmGrid": ["broken"],
+          "tempo": { "min": 170, "max": 176, "felt": null },
+          "density": 4,
+          "lead": ["bass", "drums"],
+          "function": 0.9,
+          "change": 0.45,
+          "note": "Sötétebb és ismételhetőbb: a basszus előrébb kerül, a dob leegyszerűsödik."
+        },
+        {
+          "from": 2005,
+          "label": "mai",
+          "rhythmGrid": ["broken"],
+          "tempo": { "min": 170, "max": 176, "felt": null },
+          "density": 4,
+          "lead": ["drums", "bass"],
+          "function": 0.9,
+          "change": 0.50,
+          "note": "A dob visszakapja a főszerepet, a szerkezet marad gördülő."
+        }
+      ],
       "drumPattern": {
         "kick":  [1,0,0,0, 0,0,0,0, 0,0,1,0, 0,0,0,0],
         "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
@@ -623,6 +848,30 @@
       "change": 0.85,
       "summary": "A dubstep maximalista ága: torz, agresszív, folyamatosan változó basszushangszínek, alig hagyva üres helyet.",
       "externalInfluences": [],
+      "eras": [
+        {
+          "from": 2010,
+          "label": "brostep",
+          "rhythmGrid": ["half-time"],
+          "tempo": { "min": 138, "max": 142, "felt": 70 },
+          "density": 5,
+          "lead": ["bass", "timbre"],
+          "function": 0.95,
+          "change": 0.80,
+          "note": "Az első hullám: a dubstep üres helyei betelnek torz basszussal."
+        },
+        {
+          "from": 2019,
+          "label": "mai",
+          "rhythmGrid": ["half-time"],
+          "tempo": { "min": 140, "max": 150, "felt": 72 },
+          "density": 5,
+          "lead": ["bass", "timbre"],
+          "function": 0.9,
+          "change": 0.85,
+          "note": "A második hullám gyorsabb és még mozgalmasabb. Ez a korszakolás váltja ki a korábbi kérdést, hogy két külön bejegyzés kéne-e."
+        }
+      ],
       "drumPattern": {
         "kick":  [1,0,0,0, 0,0,1,0, 0,0,0,0, 0,0,1,0],
         "snare": [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
@@ -663,6 +912,30 @@
       "change": 0.50,
       "summary": "Nagyon gyors egyenes lábdob, fölötte vidám dallam és magas ének. A hardcore tempója dúr hangzással.",
       "externalInfluences": [],
+      "eras": [
+        {
+          "from": 1994,
+          "label": "korai",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 155, "max": 170, "felt": null },
+          "density": 4,
+          "lead": ["melody"],
+          "function": 1.0,
+          "change": 0.55,
+          "note": "Még közel a breakbeat hardcore-hoz, változatosabb szerkezettel."
+        },
+        {
+          "from": 1997,
+          "label": "UK hardcore",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 160, "max": 180, "felt": null },
+          "density": 4,
+          "lead": ["melody"],
+          "function": 1.0,
+          "change": 0.50,
+          "note": "Gyorsabb és kiszámíthatóbb felépítés."
+        }
+      ],
       "drumPattern": {
         "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
         "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
@@ -683,6 +956,41 @@
       "change": 0.25,
       "summary": "Túlvezérelt lábdob, ami már nem dob, hanem hangszín. A torzítás itt nem effekt, hanem a hangszer maga.",
       "externalInfluences": [],
+      "eras": [
+        {
+          "from": 1992,
+          "label": "korai",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 160, "max": 180, "felt": null },
+          "density": 4,
+          "lead": ["drums"],
+          "function": 1.0,
+          "change": 0.35,
+          "note": "Még hallatszik rajta a breakbeat hardcore öröksége."
+        },
+        {
+          "from": 1997,
+          "label": "csúcs",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 180, "max": 200, "felt": null },
+          "density": 4,
+          "lead": ["drums"],
+          "function": 1.0,
+          "change": 0.20,
+          "note": "A tempó elszabadul, a szerkezet szinte teljesen monotonná válik."
+        },
+        {
+          "from": 2010,
+          "label": "mai",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 170, "max": 200, "felt": null },
+          "density": 4,
+          "lead": ["drums"],
+          "function": 1.0,
+          "change": 0.25,
+          "note": "A tempósáv visszatágul, valamivel több mozgás fér bele."
+        }
+      ],
       "drumPattern": {
         "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
         "snare": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
@@ -703,6 +1011,30 @@
       "change": 0.35,
       "summary": "A gabber lelassítva: a lábdob hosszú, hajlított basszusfarokban folytatódik, közte üres hely.",
       "externalInfluences": [],
+      "eras": [
+        {
+          "from": 2002,
+          "label": "korai",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 140, "max": 148, "felt": null },
+          "density": 3,
+          "lead": ["drums", "bass"],
+          "function": 1.0,
+          "change": 0.45,
+          "note": "Még közel a hard trance-hez: lassabb, ritkább, dallamosabb."
+        },
+        {
+          "from": 2010,
+          "label": "nu-style",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 145, "max": 155, "felt": null },
+          "density": 4,
+          "lead": ["drums", "bass"],
+          "function": 1.0,
+          "change": 0.35,
+          "note": "A torzított lábdob és a basszusfarok átveszi a teret, a szerkezet egyszerűsödik."
+        }
+      ],
       "drumPattern": {
         "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
         "snare": [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
@@ -843,6 +1175,30 @@
       "change": 0.35,
       "summary": "Half-time váz mély lábdobbal és gyors, pergető hi-hat futamokkal. A basszus hosszú, hajlított, egyszerű.",
       "externalInfluences": ["déli amerikai rap"],
+      "eras": [
+        {
+          "from": 2012,
+          "label": "fesztiválos",
+          "rhythmGrid": ["half-time"],
+          "tempo": { "min": 140, "max": 150, "felt": 72 },
+          "density": 3,
+          "lead": ["melody", "bass"],
+          "function": 0.9,
+          "change": 0.45,
+          "note": "Az EDM felőli első hullám: dallamosabb, felépítésesebb."
+        },
+        {
+          "from": 2017,
+          "label": "mai",
+          "rhythmGrid": ["half-time"],
+          "tempo": { "min": 140, "max": 150, "felt": 72 },
+          "density": 3,
+          "lead": ["bass", "drums"],
+          "function": 0.85,
+          "change": 0.35,
+          "note": "Sötétebb és ismétlődőbb, közelebb a rap felőli gyökeréhez."
+        }
+      ],
       "drumPattern": {
         "kick":  [1,0,0,0, 0,0,1,0, 0,0,0,0, 0,0,0,0],
         "snare": [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
