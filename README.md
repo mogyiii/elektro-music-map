@@ -42,7 +42,9 @@ Utána nyisd meg a kiírt címet.
 **Csillagtérkép** – a pozíciót az összes tulajdonság együtt adja; ami hangzásban hasonló,
 az közel kerül. Rajta:
 - *évcsúszka és lejátszás*: a műfajok akkor jelennek meg, amikor létrejöttek, és a saját
-  pályájuk mentén mozognak tovább. Nyomvonal mutatja, honnan jöttek, nyíl azt, merre tartanak
+  pályájuk mentén mozognak tovább. Nyomvonal mutatja, honnan jöttek, nyíl azt, merre tartanak.
+  A sebesség év/másodpercben állítható (1–16, alapérték 4); az év lejátszás közben
+  folyamatosan csúszik, nem egész évenként ugrik
 - *kapcsolatok színnel*: zöld folytonos = ebből lett, lila szaggatott = hatott rá.
   A hatás lehet időszakos – az `until` éve után halvány nyomként marad. Jelmagyarázat
   a térkép alatt, a kiválasztott műfaj kapcsolatai kiemelve

@@ -14,7 +14,14 @@ const FIT_PAD = 30;
 const COMPACT_WIDTH = 480;
 const LABEL_OFFSET = 10;
 const NS = "http://www.w3.org/2000/svg";
-const PLAY_STEP_MS = 90;
+
+// Egy újrarajzolás mérve 10–24 ms, ezért kb. 30 képkocka/mp a reális felső határ.
+// A lejátszás folyamatosan csúsztatja az évet, nem egészekben lépked – így lassú
+// sebességnél is sima a mozgás.
+const FRAME_MS = 33;
+const MAX_FRAME_GAP_MS = 100;
+const SPEEDS = [1, 2, 4, 8, 16]; // év / másodperc
+const DEFAULT_SPEED = 4;
 
 export function createStarView(ctx) {
   const { axesFile, genres, edges, root, controls, onSelect, onSelectGap, onYearChange } = ctx;
@@ -41,6 +48,7 @@ export function createStarView(ctx) {
   let layout = null;   // beágyazás – csak súly/tempó változásra számolódik újra
   let atYear = null;   // az adott évre vonatkozó rések, állapotok
   let playTimer = null;
+  let speed = DEFAULT_SPEED;
   let shownYear = null; // az adatlapon épp látható év
 
   root.innerHTML = `
@@ -51,6 +59,13 @@ export function createStarView(ctx) {
     <div class="timebar">
       <button type="button" class="play" data-play aria-label="Lejátszás">▶</button>
       <input type="range" class="year-slider" data-year>
+      <label class="speed">
+        <select data-speed>
+          ${SPEEDS.map(
+            (s) => `<option value="${s}"${s === DEFAULT_SPEED ? " selected" : ""}>${s} év/mp</option>`
+          ).join("")}
+        </select>
+      </label>
       <span class="year-readout" data-year-out></span>
     </div>
     <div class="legend">
@@ -69,11 +84,14 @@ export function createStarView(ctx) {
     footer: root.querySelector("[data-footer]"),
     play: root.querySelector("[data-play]"),
     slider: root.querySelector("[data-year]"),
+    speed: root.querySelector("[data-speed]"),
     yearOut: root.querySelector("[data-year-out]"),
   };
 
   el.slider.min = startYear;
   el.slider.max = endYear;
+  // tört lépés, hogy a csúszka fogantyúja is folyamatosan mozogjon lejátszás közben
+  el.slider.step = 0.25;
   el.slider.value = year;
 
   controls.innerHTML = `
@@ -136,20 +154,45 @@ export function createStarView(ctx) {
   });
 
   el.play.addEventListener("click", () => (playTimer ? stop() : play()));
+  el.speed.addEventListener("change", () => (speed = Number(el.speed.value)));
 
   function play() {
     if (year >= endYear) year = startYear;
     el.play.textContent = "❚❚";
-    playTimer = setInterval(() => {
-      year += 1;
-      if (year >= endYear) { year = endYear; stop(); }
-      el.slider.value = year;
-      draw();
-    }, PLAY_STEP_MS);
+
+    let last = performance.now();
+    let since = FRAME_MS; // az első képkocka azonnal jöjjön
+
+    const tick = (now) => {
+      if (!playTimer) return;
+      // Rejtett fülön a böngésző leállítja a képkockákat. Amikor visszatérsz,
+      // az eltelt idő több másodperc is lehet – korlátozás nélkül az évek
+      // ilyenkor egyetlen ugrással előreszaladnának.
+      const dt = Math.min(now - last, MAX_FRAME_GAP_MS);
+      last = now;
+      since += dt;
+
+      year = Math.min(endYear, year + (dt / 1000) * speed);
+
+      if (year >= endYear) {
+        stop();
+        el.slider.value = year;
+        draw();
+        return;
+      }
+      if (since >= FRAME_MS) {
+        since = 0;
+        el.slider.value = year;
+        draw();
+      }
+      playTimer = requestAnimationFrame(tick);
+    };
+
+    playTimer = requestAnimationFrame(tick);
   }
 
   function stop() {
-    clearInterval(playTimer);
+    if (playTimer) cancelAnimationFrame(playTimer);
     playTimer = null;
     el.play.textContent = "▶";
   }
@@ -191,7 +234,9 @@ export function createStarView(ctx) {
     if (width < 10 || height < 10) return;
 
     atYear = computeYear();
-    el.yearOut.textContent = year >= endYear ? `${year} · ma` : year;
+    // az év lejátszás közben tört szám, kiírni és az adatlapon használni kerekítve kell
+    const shown = Math.round(year);
+    el.yearOut.textContent = year >= endYear ? `${shown} · ma` : shown;
 
     const fitted = fitUniform(
       layout.coords.map((p) => [p[0], p[1]]),
@@ -238,16 +283,18 @@ export function createStarView(ctx) {
 
     const movingNow = [...here.values()].filter((p) => p.moving).length;
     el.footer.textContent =
-      `${here.size} műfaj ${year}-ben · ${atYear.gaps.length} rés · ` +
+      `${here.size} műfaj ${shown}-ben · ${atYear.gaps.length} rés · ` +
       `${movingNow} épp mozgásban · torzítás ${layout.stress.toFixed(2)} ` +
       `(${Object.keys(axes).length} tengely 2 dimenzióba vetítve – ` +
       `a képernyőn látott távolság közelítés)`;
 
     highlight();
 
-    // az adatlap az adott évre vonatkozik, tehát év változásakor újra kell rajzolni
-    if (shownYear !== year) {
-      shownYear = year;
+    // Az adatlap az adott évre vonatkozik, tehát év változásakor újra kell rajzolni –
+    // de csak ha a kerekített év tényleg más, különben lejátszás közben minden
+    // képkockán újraépülne a panel.
+    if (shownYear !== shown) {
+      shownYear = shown;
       onYearChange?.();
     }
   }
@@ -448,9 +495,12 @@ export function createStarView(ctx) {
   function eraOf(id) {
     const genre = genres.find((g) => g.id === id);
     if (!genre) return null;
-    if (!existsAt(genre, year)) return { absent: true, year, start: erasOf(genre)[0].from };
+    const shown = Math.round(year);
+    if (!existsAt(genre, year)) {
+      return { absent: true, year: shown, start: erasOf(genre)[0].from };
+    }
     const era = stateAt(genre, year);
-    return erasOf(genre).length > 1 ? { ...era, year } : null;
+    return erasOf(genre).length > 1 ? { ...era, year: shown } : null;
   }
 
   new ResizeObserver(() => draw()).observe(el.star);

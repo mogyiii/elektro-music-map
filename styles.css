@@ -387,6 +387,20 @@ main {
 
 .year-slider { flex: 1; min-width: 0; accent-color: var(--accent); }
 
+.timebar .speed { flex: none; display: flex; }
+
+.timebar .speed select {
+  background: var(--bg-raised);
+  color: var(--text-dim);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 3px 6px;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.timebar .speed select:hover { color: var(--text); }
+
 .year-readout {
   flex: none;
   min-width: 76px;
