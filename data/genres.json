@@ -1,0 +1,907 @@
+{
+  "$comment": "Műfajok = tulajdonságvektorok a térképekhez. A mezők jelentését lásd data/README.md. A 'year' értékek becslések, ellenőrizendők.",
+
+  "genres": [
+    {
+      "id": "house",
+      "name": "House",
+      "year": 1984,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 118, "max": 128, "felt": null },
+      "density": 2,
+      "lead": ["drums", "bass"],
+      "function": 1.0,
+      "change": 0.40,
+      "summary": "Egyenes négyes lábdob, offbeat hi-hat, groove-központú. A dob és a basszus együtt adja a lüktetést, minden más rá van építve.",
+      "externalInfluences": ["disco", "soul"],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "acid-house",
+      "name": "Acid house",
+      "year": 1987,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 118, "max": 128, "felt": null },
+      "density": 2,
+      "lead": ["timbre"],
+      "function": 1.0,
+      "change": 0.55,
+      "summary": "House-rács, de a főszereplő egyetlen hangszer csúszkáló, élő hangszíne. Nem a dallam változik, hanem a hangzás maga.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": "Az első műfaj a listán, ahol a főszereplő nem dallam és nem ritmus, hanem hangszín – pedig táncra készült."
+    },
+    {
+      "id": "deep-house",
+      "name": "Deep house",
+      "year": 1988,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 118, "max": 125, "felt": null },
+      "density": 2,
+      "lead": ["melody", "timbre"],
+      "function": 0.85,
+      "change": 0.40,
+      "summary": "Lágyabb house: jazzes akkordok, puha dobok, a groove nem üt, hanem ringat.",
+      "externalInfluences": ["jazz", "soul"],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "tech-house",
+      "name": "Tech house",
+      "year": 1997,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 122, "max": 128, "felt": null },
+      "density": 2,
+      "lead": ["drums", "bass"],
+      "function": 1.0,
+      "change": 0.35,
+      "summary": "A house groove-ja a techno ridegségével: kevés réteg, pontos dob, gördülő basszus.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": "Két ágból áll össze – jó példa arra, hogy a fa nem mindig szétágazik, néha összeér."
+    },
+    {
+      "id": "progressive-house",
+      "name": "Progressive house",
+      "year": 1992,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 126, "max": 132, "felt": null },
+      "density": 3,
+      "lead": ["melody"],
+      "function": 0.95,
+      "change": 0.70,
+      "summary": "Lassan épülő house: a változás perceken át tart, nem ütemeken.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "electro",
+      "name": "Electro",
+      "year": 1982,
+      "rhythmGrid": ["broken"],
+      "tempo": { "min": 110, "max": 130, "felt": null },
+      "density": 3,
+      "lead": ["drums", "timbre"],
+      "function": 1.0,
+      "change": 0.40,
+      "summary": "Gépi tört dobminta, szintetikus basszus, robothangok. A techno egyik gyökere.",
+      "externalInfluences": ["funk", "korai hip-hop"],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,1,0, 0,0,0,1, 0,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0]
+      },
+      "examples": [],
+      "notes": "Eddig csak külső hatásként szerepelt a technónál – most önálló pont, így a szál is kirajzolható."
+    },
+    {
+      "id": "techno",
+      "name": "Techno",
+      "year": 1985,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 130, "max": 140, "felt": null },
+      "density": 3,
+      "lead": ["drums", "timbre"],
+      "function": 1.0,
+      "change": 0.45,
+      "summary": "Egyenes négyes lábdob, de a house-zal szemben gépies és hideg: nem a groove, hanem a hangszín és az ismétlés a lényeg.",
+      "externalInfluences": ["elektro", "funk", "európai elektronikus popzene"],
+      "eras": [
+        {
+          "from": 1985,
+          "label": "detroiti",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 118, "max": 128, "felt": null },
+          "density": 3,
+          "lead": ["drums", "timbre"],
+          "function": 1.0,
+          "change": 0.50,
+          "note": "Lassabb, funkosabb, még hallatszik rajta az elektro."
+        },
+        {
+          "from": 1998,
+          "label": "loopos / minimalista hatás alatt",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 130, "max": 140, "felt": null },
+          "density": 2,
+          "lead": ["drums", "timbre"],
+          "function": 1.0,
+          "change": 0.35,
+          "note": "Gyorsabb és ritkább egyszerre – a minimal techno húzza magával."
+        },
+        {
+          "from": 2016,
+          "label": "mai",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 130, "max": 140, "felt": null },
+          "density": 3,
+          "lead": ["drums", "timbre"],
+          "function": 1.0,
+          "change": 0.45,
+          "note": "A rétegek visszatérnek, a tempó marad fent."
+        }
+      ],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": "Az évszám vitatható: a detroiti kezdetek 1981–85 közé esnek, de önálló műfajnévként 1988-tól használatos."
+    },
+    {
+      "id": "minimal-techno",
+      "name": "Minimal techno",
+      "year": 1994,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 125, "max": 130, "felt": null },
+      "density": 1,
+      "lead": ["drums", "timbre"],
+      "function": 1.0,
+      "change": 0.35,
+      "summary": "Ugyanaz a rács, mint a house-nál, de elvétellel: alig van réteg. Ami marad, az a dob és a hangszín apró változásai.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": "Gyakran nincs pergő egyáltalán – a 2. és 4. ütés máshogy van jelölve, vagy sehogy."
+    },
+    {
+      "id": "trance",
+      "name": "Trance",
+      "year": 1992,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 135, "max": 140, "felt": null },
+      "density": 3,
+      "lead": ["melody"],
+      "function": 0.95,
+      "change": 0.75,
+      "summary": "A rács ugyanaz, de a főszereplő átkerül a dallamra. Hosszú felépítések, a dob csak tartja a lüktetést.",
+      "externalInfluences": [],
+      "eras": [
+        {
+          "from": 1992,
+          "label": "korai",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 130, "max": 138, "felt": null },
+          "density": 3,
+          "lead": ["melody"],
+          "function": 1.0,
+          "change": 0.60,
+          "note": "Még közel a technóhoz, a dallam csak most veszi át a főszerepet."
+        },
+        {
+          "from": 1999,
+          "label": "himnuszos",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 138, "max": 145, "felt": null },
+          "density": 4,
+          "lead": ["melody"],
+          "function": 0.9,
+          "change": 0.85,
+          "note": "Gyorsabb és sokkal zsúfoltabb: nagy felvezetések, sok réteg."
+        },
+        {
+          "from": 2010,
+          "label": "mai",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 135, "max": 140, "felt": null },
+          "density": 3,
+          "lead": ["melody"],
+          "function": 0.95,
+          "change": 0.75,
+          "note": "Visszafogottabb, a tempó lejjebb jön."
+        }
+      ],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "psytrance",
+      "name": "Psytrance",
+      "year": 1994,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 140, "max": 150, "felt": null },
+      "density": 4,
+      "lead": ["timbre"],
+      "function": 1.0,
+      "change": 0.60,
+      "summary": "Szüntelen gördülő basszus a lábdob között, fölötte folyamatosan tekeredő, szűrt hangszínek. Dallam alig.",
+      "externalInfluences": ["goa"],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": "A trance-ből jön, de a főszereplő visszakerül a dallamról a hangszínre."
+    },
+    {
+      "id": "ambient-techno",
+      "name": "Ambient techno",
+      "year": 1992,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 110, "max": 130, "felt": null },
+      "density": 2,
+      "lead": ["timbre"],
+      "function": 0.4,
+      "change": 0.50,
+      "summary": "Megmarad a lüktetés, de már nem táncra: a rács alatt ambient felületek lélegeznek.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": "Híd a táncos tömb és az ambient közé – eddig ott egy nagy üres folt volt a térképen."
+    },
+    {
+      "id": "idm",
+      "name": "IDM",
+      "year": 1992,
+      "rhythmGrid": ["broken"],
+      "tempo": { "min": 100, "max": 160, "felt": null },
+      "density": 3,
+      "lead": ["timbre", "drums"],
+      "function": 0.25,
+      "change": 0.95,
+      "summary": "Tört, aprólékosan vágott dobminták hallgatásra. A ritmus itt nem a test, hanem a figyelem dolga.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,1, 0,0,1,0, 0,1,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,1, 0,0,0,0, 1,0,1,0],
+        "hat":   [1,1,0,1, 1,0,1,1, 1,0,1,0, 1,1,0,1]
+      },
+      "examples": [],
+      "notes": "A tempósáv szándékosan tág: ez a műfaj nem tempó szerint áll össze."
+    },
+    {
+      "id": "downtempo",
+      "name": "Downtempo",
+      "year": 1993,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 90, "max": 110, "felt": null },
+      "density": 2,
+      "lead": ["timbre"],
+      "function": 0.2,
+      "change": 0.35,
+      "summary": "Lassú, egyenes lüktetés hallgatásra: megvan az ütem, de senki nem táncol rá.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "trip-hop",
+      "name": "Trip-hop",
+      "year": 1993,
+      "rhythmGrid": ["broken"],
+      "tempo": { "min": 80, "max": 100, "felt": null },
+      "density": 3,
+      "lead": ["timbre", "drums"],
+      "function": 0.2,
+      "change": 0.40,
+      "summary": "Lassú, nehéz break, sűrű és sötét hangszínek, mély basszus. Hallgatnivaló, ami mégis a dobból él.",
+      "externalInfluences": ["hip-hop", "jamaikai dub"],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,1,0, 0,0,1,0, 0,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "hard-techno",
+      "name": "Hard techno",
+      "year": 1993,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 145, "max": 160, "felt": null },
+      "density": 4,
+      "lead": ["drums"],
+      "function": 1.0,
+      "change": 0.30,
+      "summary": "Gyors, kemény négyes lábdob, torzítás mindenen. Industrial ágon torz basszus viszi a súlyt.",
+      "externalInfluences": ["industrial"],
+      "eras": [
+        {
+          "from": 1993,
+          "label": "kilencvenes évek",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 138, "max": 148, "felt": null },
+          "density": 4,
+          "lead": ["drums"],
+          "function": 1.0,
+          "change": 0.40,
+          "note": "Kemény, de a mai mércével lassú."
+        },
+        {
+          "from": 2018,
+          "label": "mai",
+          "rhythmGrid": ["straight"],
+          "tempo": { "min": 145, "max": 160, "felt": null },
+          "density": 4,
+          "lead": ["drums"],
+          "function": 1.0,
+          "change": 0.30,
+          "note": "A tempó elszabadul. Ez a korszakolás váltja ki a korábbi kérdést, hogy két külön bejegyzés kéne-e."
+        }
+      ],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 0,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": "A 145–160 BPM a mai (kb. 2018 utáni) formára igaz; a 90-es évekbeli hard techno lassabb volt. Lehet, hogy két külön bejegyzés kéne."
+    },
+    {
+      "id": "bass-house",
+      "name": "Bass house",
+      "year": 2014,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 125, "max": 128, "felt": null },
+      "density": 4,
+      "lead": ["bass"],
+      "function": 1.0,
+      "change": 0.45,
+      "summary": "Techno/house rács dubstep-szerű basszussal. Áthelyezés: a bass music hangszerkészlete átkerül egyenes rácsra.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "dub-techno",
+      "name": "Dub techno",
+      "year": 1993,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 115, "max": 125, "felt": null },
+      "density": 2,
+      "lead": ["timbre"],
+      "function": 0.5,
+      "change": 0.40,
+      "summary": "Egyenes rács, de a hangsúly a térben és a hangszínen van: visszhang, szűrők, lassan változó felületek.",
+      "externalInfluences": ["jamaikai dub"],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": "NEM dubstep-rokon. A közös szó ellenére a jamaikai dubból jön – ez a térképen is így kell hogy látszódjon."
+    },
+    {
+      "id": "uk-garage",
+      "name": "UK garage",
+      "year": 1995,
+      "rhythmGrid": ["two-step"],
+      "tempo": { "min": 130, "max": 135, "felt": null },
+      "density": 3,
+      "lead": ["drums"],
+      "function": 1.0,
+      "change": 0.50,
+      "summary": "Elvétel az egyenes rácsból: a lábdobok nagy része kimarad, a maradék elcsúszik. Swinges, botladozó groove.",
+      "externalInfluences": ["US garage house", "jungle"],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,1]
+      },
+      "examples": [],
+      "notes": "A dubstep őse."
+    },
+    {
+      "id": "breakbeat",
+      "name": "Breakbeat",
+      "year": 1990,
+      "rhythmGrid": ["broken"],
+      "tempo": { "min": 125, "max": 135, "felt": null },
+      "density": 3,
+      "lead": ["drums"],
+      "function": 0.95,
+      "change": 0.40,
+      "summary": "Tört dobminta a rács helyett: a groove magából a dobfelvételből jön, nem a gépi négyesből.",
+      "externalInfluences": ["funk dobszólók", "hip-hop"],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,1,0, 0,0,1,0, 0,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "jungle",
+      "name": "Jungle",
+      "year": 1993,
+      "rhythmGrid": ["broken"],
+      "tempo": { "min": 160, "max": 170, "felt": null },
+      "density": 4,
+      "lead": ["drums"],
+      "function": 0.95,
+      "change": 0.80,
+      "summary": "Felgyorsított, feldarabolt breakek sűrű szövete, alatta lassú, nehéz basszus. A dob és a basszus két külön tempóban él.",
+      "externalInfluences": ["ragga", "reggae basszus"],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,0,0, 0,0,1,0, 0,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,1, 0,0,0,0, 1,0,1,0],
+        "hat":   [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0]
+      },
+      "examples": [],
+      "notes": "A valódi break két ütemen át fut – a 16 lépéses rács ezt leegyszerűsíti."
+    },
+    {
+      "id": "drum-and-bass",
+      "name": "Drum & bass",
+      "year": 1995,
+      "rhythmGrid": ["broken"],
+      "tempo": { "min": 170, "max": 176, "felt": null },
+      "density": 4,
+      "lead": ["drums", "bass"],
+      "function": 0.9,
+      "change": 0.50,
+      "summary": "A jungle rendezettebb utódja: állandó két lépéses dobváz, ami pihenő nélkül gördül tovább.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,0,0, 0,0,1,0, 0,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "uk-bass",
+      "name": "UK bass / post-dubstep",
+      "year": 2009,
+      "rhythmGrid": ["two-step", "half-time"],
+      "tempo": { "min": 130, "max": 140, "felt": null },
+      "density": 2,
+      "lead": ["bass"],
+      "function": 0.8,
+      "change": 0.45,
+      "summary": "Átmeneti terület: a dubstep basszusa ritkább, visszafogottabb dobkörnyezetben, a techno felé hajolva.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,0,0, 0,0,1,0, 0,0,0,0],
+        "snare": [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
+        "hat":   [0,0,1,0, 0,0,0,0, 0,0,1,0, 0,0,0,0]
+      },
+      "examples": [],
+      "notes": "Vegyes rács: hol 2-step, hol half-time. Ezért van két érték a rhythmGrid-ben."
+    },
+    {
+      "id": "dubstep",
+      "name": "Dubstep",
+      "year": 2002,
+      "rhythmGrid": ["half-time"],
+      "tempo": { "min": 138, "max": 142, "felt": 70 },
+      "density": 3,
+      "lead": ["bass"],
+      "function": 0.9,
+      "change": 0.50,
+      "summary": "140 BPM, de 70-nek hat: a pergő az ütem közepére kerül, a lábdobok nagy része kimarad. A keletkező üres helyet a basszus tölti ki.",
+      "externalInfluences": ["jamaikai dub (térkezelés)"],
+      "eras": [
+        {
+          "from": 2002,
+          "label": "korai, dubos",
+          "rhythmGrid": ["half-time"],
+          "tempo": { "min": 138, "max": 142, "felt": 70 },
+          "density": 2,
+          "lead": ["bass"],
+          "function": 0.8,
+          "change": 0.45,
+          "note": "Sok üres hely, visszhang, tér. Inkább hallgatnivaló, mint tánc."
+        },
+        {
+          "from": 2010,
+          "label": "brostep",
+          "rhythmGrid": ["half-time"],
+          "tempo": { "min": 138, "max": 142, "felt": 70 },
+          "density": 4,
+          "lead": ["bass", "timbre"],
+          "function": 0.95,
+          "change": 0.70,
+          "note": "Az üres helyek betelnek, a basszushangszín válik főszereplővé."
+        },
+        {
+          "from": 2015,
+          "label": "mai",
+          "rhythmGrid": ["half-time"],
+          "tempo": { "min": 138, "max": 142, "felt": 70 },
+          "density": 3,
+          "lead": ["bass"],
+          "function": 0.9,
+          "change": 0.50,
+          "note": "Középen áll meg: a tearout és a riddim viszi tovább a két szélsőséget."
+        }
+      ],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0],
+        "snare": [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
+        "hat":   [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "riddim",
+      "name": "Riddim",
+      "year": 2015,
+      "rhythmGrid": ["half-time"],
+      "tempo": { "min": 140, "max": 150, "felt": 72 },
+      "density": 2,
+      "lead": ["bass"],
+      "function": 0.95,
+      "change": 0.15,
+      "summary": "Elvétel a dubstepből: kevesebb réteg, ismétlődő triolás wobble. A monotonitás itt nem hiba, hanem eszköz.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0],
+        "snare": [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": "A dobrács szinte azonos a dubstepével – a különbség a basszusban és a sűrűségben van, nem a dobban."
+    },
+    {
+      "id": "tearout",
+      "name": "Tearout",
+      "year": 2010,
+      "rhythmGrid": ["half-time"],
+      "tempo": { "min": 140, "max": 150, "felt": 72 },
+      "density": 5,
+      "lead": ["bass", "timbre"],
+      "function": 0.9,
+      "change": 0.85,
+      "summary": "A dubstep maximalista ága: torz, agresszív, folyamatosan változó basszushangszínek, alig hagyva üres helyet.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,1,0, 0,0,0,0, 0,0,1,0],
+        "snare": [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
+        "hat":   [0,0,1,0, 1,0,1,0, 0,0,1,0, 1,0,1,0]
+      },
+      "examples": [],
+      "notes": "Az évszám vitatható: a 2010 körüli brostep és a 2019 utáni tearout-hullám nem ugyanaz."
+    },
+    {
+      "id": "breakbeat-hardcore",
+      "name": "Breakbeat hardcore",
+      "year": 1991,
+      "rhythmGrid": ["broken"],
+      "tempo": { "min": 130, "max": 150, "felt": null },
+      "density": 4,
+      "lead": ["drums"],
+      "function": 1.0,
+      "change": 0.60,
+      "summary": "Felgyorsított breakek, house-os zongora és énekminták, sok minden egyszerre. Innen ágazik szét a jungle és a hardcore.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,1,0, 0,0,1,0, 0,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,1],
+        "hat":   [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0]
+      },
+      "examples": [],
+      "notes": "Elágazási pont: innen indul a tört ág (jungle) és az egyenes ág (gabber) is."
+    },
+    {
+      "id": "happy-hardcore",
+      "name": "Happy hardcore",
+      "year": 1994,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 160, "max": 180, "felt": null },
+      "density": 4,
+      "lead": ["melody"],
+      "function": 1.0,
+      "change": 0.50,
+      "summary": "Nagyon gyors egyenes lábdob, fölötte vidám dallam és magas ének. A hardcore tempója dúr hangzással.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "gabber",
+      "name": "Gabber",
+      "year": 1992,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 170, "max": 200, "felt": null },
+      "density": 4,
+      "lead": ["drums"],
+      "function": 1.0,
+      "change": 0.25,
+      "summary": "Túlvezérelt lábdob, ami már nem dob, hanem hangszín. A torzítás itt nem effekt, hanem a hangszer maga.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": "A dob és a hangszín közti határ itt eltűnik – lehet, hogy a 'főszereplő' tengely erre nem elég finom."
+    },
+    {
+      "id": "hardstyle",
+      "name": "Hardstyle",
+      "year": 2002,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 145, "max": 155, "felt": null },
+      "density": 4,
+      "lead": ["drums", "bass"],
+      "function": 1.0,
+      "change": 0.35,
+      "summary": "A gabber lelassítva: a lábdob hosszú, hajlított basszusfarokban folytatódik, közte üres hely.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "big-beat",
+      "name": "Big beat",
+      "year": 1995,
+      "rhythmGrid": ["broken"],
+      "tempo": { "min": 120, "max": 135, "felt": null },
+      "density": 4,
+      "lead": ["drums"],
+      "function": 0.9,
+      "change": 0.40,
+      "summary": "Vastag, lassú break, torz basszus és rockos gesztusok. Nagy, egyszerű, hangos.",
+      "externalInfluences": ["rock", "funk"],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,1,0, 0,0,1,0, 0,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "neurofunk",
+      "name": "Neurofunk",
+      "year": 1997,
+      "rhythmGrid": ["broken"],
+      "tempo": { "min": 172, "max": 176, "felt": null },
+      "density": 4,
+      "lead": ["bass", "timbre"],
+      "function": 0.9,
+      "change": 0.60,
+      "summary": "A drum & bass, ahol a basszus átveszi a főszerepet a dobtól: tekeredő, fémes, folyamatosan mozgó hangszínek.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,0,0, 0,0,1,0, 0,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0]
+      },
+      "examples": [],
+      "notes": "Érdekes szomszédság: a basszus-központúság a dubstep felé húzza, pedig egészen máshonnan jön."
+    },
+    {
+      "id": "liquid-dnb",
+      "name": "Liquid drum & bass",
+      "year": 2000,
+      "rhythmGrid": ["broken"],
+      "tempo": { "min": 170, "max": 175, "felt": null },
+      "density": 3,
+      "lead": ["melody"],
+      "function": 0.85,
+      "change": 0.50,
+      "summary": "Ugyanaz a gördülő dobváz, de fölötte lágy akkordok és ének. A főszereplő a dobról a dallamra kerül.",
+      "externalInfluences": ["soul", "jazz"],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,0,0, 0,0,1,0, 0,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "speed-garage",
+      "name": "Speed garage",
+      "year": 1996,
+      "rhythmGrid": ["two-step"],
+      "tempo": { "min": 130, "max": 140, "felt": null },
+      "density": 3,
+      "lead": ["bass"],
+      "function": 1.0,
+      "change": 0.45,
+      "summary": "UK garage mély, ugráló basszussal a jungle felől. A groove marad, a súly lentre kerül.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,1]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "grime",
+      "name": "Grime",
+      "year": 2002,
+      "rhythmGrid": ["two-step", "broken"],
+      "tempo": { "min": 138, "max": 142, "felt": null },
+      "density": 3,
+      "lead": ["drums", "bass"],
+      "function": 0.85,
+      "change": 0.50,
+      "summary": "Szögletes, nyers ritmus rapre építve. A dubstep testvére: ugyanabból a garage-ból, de énekközpontúan.",
+      "externalInfluences": ["rap"],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,1,0, 0,0,0,1, 0,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "footwork",
+      "name": "Footwork",
+      "year": 2005,
+      "rhythmGrid": ["broken"],
+      "tempo": { "min": 155, "max": 165, "felt": null },
+      "density": 3,
+      "lead": ["drums", "bass"],
+      "function": 1.0,
+      "change": 0.55,
+      "summary": "Triolás, kapkodó dobminta és rövid, ismételt minták. Táncra készült, de a tánc is a ritmus része.",
+      "externalInfluences": ["ghetto house", "juke"],
+      "drumPattern": {
+        "kick":  [1,0,1,0, 0,1,0,1, 1,0,0,1, 0,1,0,0],
+        "snare": [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
+        "hat":   [1,0,0,1, 0,0,1,0, 0,1,0,0, 1,0,1,0]
+      },
+      "examples": [],
+      "notes": "A 16 lépés itt különösen leegyszerűsít: a valódi minta triolás."
+    },
+    {
+      "id": "trap",
+      "name": "Trap",
+      "year": 2012,
+      "rhythmGrid": ["half-time"],
+      "tempo": { "min": 140, "max": 150, "felt": 72 },
+      "density": 3,
+      "lead": ["bass", "drums"],
+      "function": 0.85,
+      "change": 0.35,
+      "summary": "Half-time váz mély lábdobbal és gyors, pergető hi-hat futamokkal. A basszus hosszú, hajlított, egyszerű.",
+      "externalInfluences": ["déli amerikai rap"],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,1,0, 0,0,0,0, 0,0,0,0],
+        "snare": [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
+        "hat":   [1,0,1,0, 1,1,1,1, 1,0,1,0, 1,1,0,1]
+      },
+      "examples": [],
+      "notes": "Ugyanaz a half-time rács, mint a dubstepnél, de egészen máshonnan érkezve."
+    },
+    {
+      "id": "future-bass",
+      "name": "Future bass",
+      "year": 2014,
+      "rhythmGrid": ["half-time"],
+      "tempo": { "min": 140, "max": 160, "felt": 75 },
+      "density": 4,
+      "lead": ["melody", "bass"],
+      "function": 0.8,
+      "change": 0.50,
+      "summary": "Half-time váz fölött hullámzó, dúr akkordfelületek. A basszus megmarad, de a dallam veszi át a vezetést.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,1,0, 0,0,0,0, 0,0,0,0],
+        "snare": [0,0,0,0, 0,0,0,0, 1,0,0,0, 0,0,0,0],
+        "hat":   [1,0,1,0, 1,0,1,1, 1,0,1,0, 1,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "ambient",
+      "name": "Ambient",
+      "year": 1978,
+      "rhythmGrid": ["none"],
+      "tempo": { "min": null, "max": null, "felt": null },
+      "density": 1,
+      "lead": ["timbre"],
+      "function": 0.0,
+      "change": 0.40,
+      "summary": "Nincs lüktetés. A zene ideje a hangszín lassú változásából jön, nem az ütemből.",
+      "externalInfluences": [],
+      "drumPattern": null,
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "drone",
+      "name": "Drone",
+      "year": 1964,
+      "rhythmGrid": ["none"],
+      "tempo": { "min": null, "max": null, "felt": null },
+      "density": 1,
+      "lead": ["timbre"],
+      "function": 0.0,
+      "change": 0.05,
+      "summary": "Kitartott hang, minimális változással. Még az ambient lassú mozgása is eltűnik.",
+      "externalInfluences": ["minimalizmus (komolyzene)"],
+      "drumPattern": null,
+      "examples": [],
+      "notes": ""
+    }
+  ]
+}

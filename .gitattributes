@@ -1,0 +1,2 @@
+# A tárolóban mindig LF legyen, hogy a soronkénti diffek gépek közt is értelmesek maradjanak.
+* text=auto eol=lf

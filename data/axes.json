@@ -1,0 +1,118 @@
+{
+  "$comment": "Tengelydefiníciók és a hasonlóság-számítás paraméterei. A súlyok csúszkával állíthatók legyenek a felületen; az itteni értékek csak alapbeállítások.",
+
+  "axes": {
+    "rhythmGrid": {
+      "label": "Ritmusrács",
+      "type": "categorical",
+      "multi": true,
+      "weight": 1.0,
+      "categories": {
+        "straight": "egyenes",
+        "two-step": "2-step",
+        "broken": "tört",
+        "half-time": "half-time",
+        "none": "nincs ütem"
+      },
+      "$comment_order": "A kategóriák sorrendje a tengely sorrendje is, amikor ez a tengely van kirajzolva.",
+      "similarity": [
+        { "a": "straight", "b": "two-step", "value": 0.4 },
+        { "a": "straight", "b": "broken", "value": 0.2 },
+        { "a": "straight", "b": "half-time", "value": 0.25 },
+        { "a": "straight", "b": "none", "value": 0.0 },
+        { "a": "two-step", "b": "broken", "value": 0.6 },
+        { "a": "two-step", "b": "half-time", "value": 0.5 },
+        { "a": "two-step", "b": "none", "value": 0.0 },
+        { "a": "broken", "b": "half-time", "value": 0.35 },
+        { "a": "broken", "b": "none", "value": 0.0 },
+        { "a": "half-time", "b": "none", "value": 0.0 }
+      ]
+    },
+
+    "tempo": {
+      "label": "Tempó",
+      "type": "numeric",
+      "unit": "BPM",
+      "range": [60, 200],
+      "weight": 1.0,
+      "nullable": true,
+      "$comment": "A műfaj tempója sáv (min–max); a távolsághoz a sáv közepét használjuk. Ha null (ambient, drone), a tengely kimarad a számításból – NEM 0-val helyettesítendő."
+    },
+
+    "density": {
+      "label": "Sűrűség",
+      "type": "numeric",
+      "range": [1, 5],
+      "weight": 0.7,
+      "nullable": false,
+      "$comment": "1 = minimalista, 5 = zsúfolt"
+    },
+
+    "lead": {
+      "label": "Főszereplő",
+      "type": "categorical",
+      "multi": true,
+      "weight": 0.8,
+      "categories": {
+        "drums": "dob",
+        "bass": "basszus",
+        "melody": "dallam",
+        "timbre": "hangszín"
+      },
+      "similarity": [
+        { "a": "drums", "b": "bass", "value": 0.4 },
+        { "a": "drums", "b": "melody", "value": 0.1 },
+        { "a": "drums", "b": "timbre", "value": 0.2 },
+        { "a": "bass", "b": "melody", "value": 0.2 },
+        { "a": "bass", "b": "timbre", "value": 0.3 },
+        { "a": "melody", "b": "timbre", "value": 0.4 }
+      ]
+    },
+
+    "function": {
+      "label": "Funkció",
+      "type": "numeric",
+      "range": [0, 1],
+      "weight": 0.6,
+      "nullable": false,
+      "$comment": "0 = tiszta hallgatás, 1 = tiszta tánc"
+    },
+
+    "change": {
+      "label": "Változás",
+      "type": "numeric",
+      "range": [0, 1],
+      "weight": 0.6,
+      "nullable": false,
+      "$comment": "Mennyit változik a zene önmagához képest egy szám hossza alatt. 0 = végig ugyanaz, 1 = szinte semmi nem ismétlődik.",
+      "$comment_why": "A sűrűség azt méri, mennyi szól egyszerre; ez azt, hogy mennyi változik közben. A riddim és a minimal techno mindkettő ritka, de az egyik szándékosan áll egy helyben, a másik folyamatosan csúszik. E nélkül a tengely nélkül az ambient és a drone távolsága pontosan 0 volt."
+    }
+  },
+
+  "similarity": {
+    "multiValueRule": "mean",
+    "$comment_multiValueRule": "Többértékű kategóriáknál (pl. lead: dob + basszus) az összes párosítás átlaga számít. Alternatíva: 'max', a legjobb egyezés – de az túl elnéző: ha két műfaj akár egyetlen főszereplőn osztozik, a tengely nullát ad. Emiatt ült egymáson a drum & bass és a neurofunk, meg a hard techno és a hardstyle.",
+
+    "missingAxisRule": "skip-and-renormalize",
+    "$comment_missingAxisRule": "Ha egy tengely az egyik műfajnál hiányzik (tempo: null), kimarad a számításból, és a súlyok újranormálódnak a megmaradt tengelyeken.",
+
+    "useFeltTempo": false,
+    "$comment_useFeltTempo": "Ha true, a half-time műfajoknál a névleges BPM helyett az érzett tempó számít (dubstep: 140 helyett 70). Ez lényegesen más térképet ad – érdemes kapcsolóként kitenni."
+  },
+
+  "gaps": {
+    "$comment": "A 'hiányzó rés' vonalak szabálya. FONTOS: ez az eredeti tulajdonságvektorokon fusson, ne a kirajzolt 2D koordinátákon. A távolságok 0 (azonos) és 1 (maximálisan különböző) közöttiek.",
+
+    "minPairDistance": 0.08,
+    "$comment_minPairDistance": "Ennél közelebbi pár közé nem fér be semmi – a jungle és a drum & bass közt (0.02) nincs hely egy új stílusnak.",
+
+    "maxPairDistance": 0.55,
+    "$comment_maxPairDistance": "Ennél távolabbi párnál a 'közte' már nem jelent semmit.",
+
+    "minClearanceRatio": 0.5,
+    "$comment_minClearanceRatio": "Mennyit kell kerülnie a legközelebbi harmadik műfajnak a közvetlen úthoz képest. 0.5 = legalább a felét. Ha bárki majdnem egyenesen a kettő közé esik, nincs rés – pl. a techno és a riddim közt ott a dubstep.",
+
+    "maxLines": 12,
+    "$comment_maxLines": "Csak a legerősebb N rés-vonal jelenjen meg, hogy ne legyen tele a kép."
+  }
+}

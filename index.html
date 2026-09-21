@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elektronikus zene térkép</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <h1>Elektronikus zene térkép</h1>
+  <nav class="view-tabs" id="view-tabs">
+    <button type="button" data-view="axes">Tengelyes</button>
+    <button type="button" data-view="star">Csillagtérkép</button>
+  </nav>
+</header>
+
+<div class="controls-bar" id="controls"></div>
+
+<main>
+  <div class="stage" id="stage"></div>
+  <aside class="detail" id="detail">
+    <p class="placeholder">Válassz egy műfajt a térképen.</p>
+  </aside>
+</main>
+
+<div class="error" id="error" hidden></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# operációs rendszer
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# szerkesztők
+.vscode/
+.idea/
+*.swp
+
+# ha később lesz build vagy csomagkezelés
+node_modules/
+dist/
+
+# gépenként eltérő Claude Code beállítások (a megosztott .claude/settings.json maradhat)
+.claude/settings.local.json

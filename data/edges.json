@@ -1,0 +1,633 @@
+{
+  "$comment": "Származási élek az idővonalhoz és a csillagtérképre húzható halvány szálakhoz. Az él maga hordozza az átmenet leírását – mert az átmenet nem csak hozzáadás, hanem elvétel és áthelyezés is.",
+
+  "edgeTypes": {
+    "parent": "Közvetlen leszármazás – a célműfaj ebből nőtt ki. Végleges: ami egyszer megtörtént, az később is igaz marad.",
+    "influence": "Hatás, de nem szülő – más ágból érkező befolyás. Lehet időszakos, ilyenkor van 'until' éve."
+  },
+
+  "$comment_until": "Az 'until' csak hatásnál értelmes: eddig az évig volt eleven a befolyás. Utána a térképen halvány nyomként marad, mert megtörtént, de már nem hat. Ha nincs megadva, a hatás máig tart.",
+
+  "edges": [
+    {
+      "from": "house",
+      "to": "techno",
+      "type": "influence",
+      "year": 1985,
+      "until": 1992,
+      "changes": {
+        "removed": ["a disco felől örökölt élő, emberi groove"],
+        "moved": [],
+        "added": ["gépies, hideg hangszínek", "sci-fi témájú hangzásvilág"]
+      },
+      "note": "Testvérműfajok, nem leszármazás: Chicago és Detroit párhuzamosan, egymásra hatva."
+    },
+    {
+      "from": "techno",
+      "to": "minimal-techno",
+      "type": "parent",
+      "year": 1994,
+      "changes": {
+        "removed": ["a rétegek nagy része", "a pergő"],
+        "moved": ["a figyelem a hangszín apró változásaira kerül"],
+        "added": []
+      },
+      "note": "Tisztán elvétel: a rács ugyanaz marad, csak kevesebb van rajta. Sűrűség 3 → 1."
+    },
+    {
+      "from": "techno",
+      "to": "hard-techno",
+      "type": "parent",
+      "year": 1993,
+      "changes": {
+        "removed": [],
+        "moved": ["a tempó felmegy"],
+        "added": ["torzítás", "industrial hangszínek", "torz basszus"]
+      },
+      "note": ""
+    },
+    {
+      "from": "techno",
+      "to": "dub-techno",
+      "type": "parent",
+      "year": 1993,
+      "changes": {
+        "removed": ["a pergő", "az éles kontúrok"],
+        "moved": ["a tempó lejjebb kerül"],
+        "added": ["visszhang és tér", "lassan mozgó szűrt akkordfelületek"]
+      },
+      "note": "A tér- és visszhangkezelés a jamaikai dubból jön, nem a technóból – lásd a műfaj externalInfluences mezőjét."
+    },
+    {
+      "from": "techno",
+      "to": "trance",
+      "type": "parent",
+      "year": 1992,
+      "changes": {
+        "removed": ["a hangszín-központúság"],
+        "moved": ["a főszereplő a dallamra kerül"],
+        "added": ["hosszú felépítés", "dúr hangzású dallamrétegek"]
+      },
+      "note": ""
+    },
+    {
+      "from": "house",
+      "to": "trance",
+      "type": "influence",
+      "year": 1992,
+      "until": 1996,
+      "changes": {
+        "removed": [],
+        "moved": ["a főszereplő a groove-ról a dallamra kerül"],
+        "added": ["hosszú, több percen átívelő felépítés", "arpeggio-rétegek"]
+      },
+      "note": ""
+    },
+    {
+      "from": "house",
+      "to": "uk-garage",
+      "type": "parent",
+      "year": 1995,
+      "changes": {
+        "removed": ["a négy lábdobból kettő-három"],
+        "moved": ["a maradék lábdob elcsúszik az ütemvonalról"],
+        "added": ["swing / shuffle", "vágott énekminták"]
+      },
+      "note": "US garage house-on keresztül."
+    },
+    {
+      "from": "jungle",
+      "to": "uk-garage",
+      "type": "influence",
+      "year": 1995,
+      "until": 2000,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["mély, súlyos basszus a könnyed groove alá"]
+      },
+      "note": ""
+    },
+    {
+      "from": "breakbeat",
+      "to": "jungle",
+      "type": "parent",
+      "year": 1993,
+      "changes": {
+        "removed": [],
+        "moved": ["a tempó felmegy 160+-ra, de a basszus lassú marad"],
+        "added": ["a break feldarabolása és újrarendezése", "ragga énekminták"]
+      },
+      "note": ""
+    },
+    {
+      "from": "jungle",
+      "to": "drum-and-bass",
+      "type": "parent",
+      "year": 1995,
+      "changes": {
+        "removed": ["a break folyamatos újravágása", "a ragga minták"],
+        "moved": [],
+        "added": ["állandó, ismételhető két lépéses dobváz"]
+      },
+      "note": "Rendezés, nem bővítés: kevesebb változatosság, több lendület."
+    },
+    {
+      "from": "uk-garage",
+      "to": "dubstep",
+      "type": "parent",
+      "year": 2002,
+      "changes": {
+        "removed": ["a maradék lábdobok nagy része", "az énekminták"],
+        "moved": ["a pergő az ütem közepére kerül – így lesz half-time"],
+        "added": ["a felszabaduló helyet kitöltő basszus"]
+      },
+      "note": ""
+    },
+    {
+      "from": "minimal-techno",
+      "to": "dubstep",
+      "type": "influence",
+      "year": 2002,
+      "until": 2008,
+      "changes": {
+        "removed": ["a lábdobok többsége"],
+        "moved": ["a pergő az ütem közepére", "half-time lesz"],
+        "added": []
+      },
+      "note": "Ez a projekt alapfelismerésének példája: az átmenet elvétellel és áthelyezéssel történik, nem réteg hozzáadásával."
+    },
+    {
+      "from": "dubstep",
+      "to": "riddim",
+      "type": "parent",
+      "year": 2015,
+      "changes": {
+        "removed": ["a legtöbb kísérőréteg", "a dallam"],
+        "moved": [],
+        "added": ["ismétlődő triolás wobble"]
+      },
+      "note": "Sűrűség 3 → 2. Elvétellel jön ki."
+    },
+    {
+      "from": "dubstep",
+      "to": "tearout",
+      "type": "parent",
+      "year": 2010,
+      "changes": {
+        "removed": ["a csend, az üresen hagyott helyek"],
+        "moved": [],
+        "added": ["erős torzítás", "folyamatosan váltakozó basszushangszínek"]
+      },
+      "note": "Sűrűség 3 → 5. A riddim ellenkező iránya ugyanabból a szülőből."
+    },
+    {
+      "from": "dubstep",
+      "to": "uk-bass",
+      "type": "parent",
+      "year": 2009,
+      "changes": {
+        "removed": ["az agresszív basszushangszínek", "a half-time merevsége"],
+        "moved": ["a rács a 2-step felé lazul vissza"],
+        "added": ["house/techno felőli hangszerkészlet"]
+      },
+      "note": ""
+    },
+    {
+      "from": "uk-garage",
+      "to": "uk-bass",
+      "type": "influence",
+      "year": 2009,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["a 2-step groove visszatérése"]
+      },
+      "note": ""
+    },
+    {
+      "from": "house",
+      "to": "bass-house",
+      "type": "parent",
+      "year": 2014,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["dubstep-szerű basszushangszínek az egyenes rácsra"]
+      },
+      "note": ""
+    },
+    {
+      "from": "dubstep",
+      "to": "bass-house",
+      "type": "influence",
+      "year": 2014,
+      "until": 2019,
+      "changes": {
+        "removed": ["a half-time rács"],
+        "moved": ["a basszus átkerül egyenes 4/4 rácsra"],
+        "added": []
+      },
+      "note": "Áthelyezés: a hangszerkészlet marad, a ritmusrács cserélődik."
+    },
+    {
+      "from": "drone",
+      "to": "ambient",
+      "type": "influence",
+      "year": 1978,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["lassú harmóniai és hangszínbeli mozgás a kitartott hang fölé"]
+      },
+      "note": ""
+    },
+
+    {
+      "from": "electro",
+      "to": "techno",
+      "type": "parent",
+      "year": 1985,
+      "changes": {
+        "removed": ["a tört dobminta"],
+        "moved": ["a rács egyenes négyesre vált"],
+        "added": []
+      },
+      "note": "A gépi hangszerkészlet és a sci-fi hangzás innen jön."
+    },
+    {
+      "from": "house",
+      "to": "acid-house",
+      "type": "parent",
+      "year": 1987,
+      "changes": {
+        "removed": ["a rétegek egy része"],
+        "moved": ["a főszereplő a groove-ról a hangszínre kerül"],
+        "added": ["egyetlen, folyamatosan csavart basszushangszín"]
+      },
+      "note": "Nem hozzáadás, hanem figyelemáthelyezés: ugyanaz a rács, más nézőpont."
+    },
+    {
+      "from": "house",
+      "to": "deep-house",
+      "type": "parent",
+      "year": 1988,
+      "changes": {
+        "removed": ["az éles ütés"],
+        "moved": [],
+        "added": ["jazzes akkordok", "puha dobhangszínek"]
+      },
+      "note": ""
+    },
+    {
+      "from": "house",
+      "to": "tech-house",
+      "type": "parent",
+      "year": 1997,
+      "changes": {
+        "removed": ["a rétegek nagy része"],
+        "moved": [],
+        "added": []
+      },
+      "note": ""
+    },
+    {
+      "from": "techno",
+      "to": "tech-house",
+      "type": "influence",
+      "year": 1997,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["pontos, hideg dobhangszínek", "a ritkítás elve"]
+      },
+      "note": "Itt két ág összeér, nem szétágazik – ezt a fa nem tudja megmutatni, a térkép igen."
+    },
+    {
+      "from": "house",
+      "to": "progressive-house",
+      "type": "parent",
+      "year": 1992,
+      "changes": {
+        "removed": [],
+        "moved": ["a változás ideje ütemekről percekre nő"],
+        "added": ["hosszú, rétegenként épülő szerkezet"]
+      },
+      "note": ""
+    },
+    {
+      "from": "trance",
+      "to": "psytrance",
+      "type": "parent",
+      "year": 1994,
+      "changes": {
+        "removed": ["a dúr dallamok"],
+        "moved": ["a főszereplő a dallamról a hangszínre kerül vissza"],
+        "added": ["szüntelen gördülő basszus a lábdobok között"]
+      },
+      "note": ""
+    },
+    {
+      "from": "techno",
+      "to": "ambient-techno",
+      "type": "parent",
+      "year": 1992,
+      "changes": {
+        "removed": ["a tánc célja"],
+        "moved": [],
+        "added": ["lassan lélegző felületek a rács alá"]
+      },
+      "note": ""
+    },
+    {
+      "from": "ambient",
+      "to": "ambient-techno",
+      "type": "parent",
+      "year": 1992,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["egyenes lüktetés az addig ütem nélküli felületek alá"]
+      },
+      "note": "Két irányból ugyanoda: a techno leveszi a táncot, az ambient hozzáad egy ütemet."
+    },
+    {
+      "from": "techno",
+      "to": "idm",
+      "type": "parent",
+      "year": 1992,
+      "changes": {
+        "removed": ["a tánc célja", "az ismételhető rács"],
+        "moved": ["a rács egyenesből törtbe megy át"],
+        "added": ["aprólékosan vágott, soha nem ismétlődő dobminták"]
+      },
+      "note": ""
+    },
+    {
+      "from": "ambient",
+      "to": "idm",
+      "type": "influence",
+      "year": 1992,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["a hallgatás mint cél"]
+      },
+      "note": ""
+    },
+    {
+      "from": "ambient",
+      "to": "downtempo",
+      "type": "parent",
+      "year": 1993,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["lassú, egyenes ütem"]
+      },
+      "note": ""
+    },
+    {
+      "from": "breakbeat",
+      "to": "trip-hop",
+      "type": "influence",
+      "year": 1993,
+      "changes": {
+        "removed": ["a tempó nagy része"],
+        "moved": ["a funkció a táncról a hallgatásra kerül"],
+        "added": ["sötét hangszínek", "dubos tér"]
+      },
+      "note": ""
+    },
+    {
+      "from": "breakbeat",
+      "to": "breakbeat-hardcore",
+      "type": "parent",
+      "year": 1991,
+      "changes": {
+        "removed": [],
+        "moved": ["a tempó felmegy"],
+        "added": ["zongora- és énekminták", "több réteg egyszerre"]
+      },
+      "note": ""
+    },
+    {
+      "from": "house",
+      "to": "breakbeat-hardcore",
+      "type": "influence",
+      "year": 1991,
+      "until": 1994,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["zongorafutamok", "dúr hangzású énekminták"]
+      },
+      "note": "Rövid, de meghatározó időszak – utána a két ág végleg elvált."
+    },
+    {
+      "from": "breakbeat-hardcore",
+      "to": "jungle",
+      "type": "parent",
+      "year": 1993,
+      "changes": {
+        "removed": ["a zongora és a dúr énekminták"],
+        "moved": [],
+        "added": ["mély basszus", "a break feldarabolása"]
+      },
+      "note": "A tört ág: a break marad, a vidámság megy."
+    },
+    {
+      "from": "breakbeat-hardcore",
+      "to": "gabber",
+      "type": "parent",
+      "year": 1992,
+      "changes": {
+        "removed": ["a break", "minden dallamos réteg"],
+        "moved": ["a rács törtből egyenesbe vált"],
+        "added": ["túlvezérelt lábdob"]
+      },
+      "note": "Az egyenes ág: ugyanabból a szülőből, pont az ellenkező irányba, mint a jungle."
+    },
+    {
+      "from": "breakbeat-hardcore",
+      "to": "happy-hardcore",
+      "type": "parent",
+      "year": 1994,
+      "changes": {
+        "removed": ["a break"],
+        "moved": ["a rács egyenesre vált"],
+        "added": ["magas ének", "dúr dallam"]
+      },
+      "note": ""
+    },
+    {
+      "from": "gabber",
+      "to": "happy-hardcore",
+      "type": "influence",
+      "year": 1994,
+      "until": 1998,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["a nagyon gyors tempó"]
+      },
+      "note": ""
+    },
+    {
+      "from": "gabber",
+      "to": "hardstyle",
+      "type": "parent",
+      "year": 2002,
+      "changes": {
+        "removed": ["a tempó jelentős része"],
+        "moved": ["a torzított lábdob basszusfarokká nyúlik"],
+        "added": ["üres hely az ütések közt"]
+      },
+      "note": "Lassítás és ritkítás – elvétellel lett belőle önálló műfaj."
+    },
+    {
+      "from": "breakbeat",
+      "to": "big-beat",
+      "type": "parent",
+      "year": 1995,
+      "changes": {
+        "removed": ["a finomság"],
+        "moved": [],
+        "added": ["torz basszus", "rockos gesztusok", "nagy hangerő"]
+      },
+      "note": ""
+    },
+    {
+      "from": "drum-and-bass",
+      "to": "neurofunk",
+      "type": "parent",
+      "year": 1997,
+      "changes": {
+        "removed": ["a break változatossága"],
+        "moved": ["a főszereplő a dobról a basszusra kerül"],
+        "added": ["fémes, folyamatosan mozgó basszushangszínek"]
+      },
+      "note": ""
+    },
+    {
+      "from": "drum-and-bass",
+      "to": "liquid-dnb",
+      "type": "parent",
+      "year": 2000,
+      "changes": {
+        "removed": ["a sötét hangszínek"],
+        "moved": ["a főszereplő a dobról a dallamra kerül"],
+        "added": ["lágy akkordok", "ének"]
+      },
+      "note": "Ugyanabból a szülőből az ellenkező irány, mint a neurofunk."
+    },
+    {
+      "from": "uk-garage",
+      "to": "speed-garage",
+      "type": "parent",
+      "year": 1996,
+      "changes": {
+        "removed": [],
+        "moved": ["a súly a groove-ról a basszusra kerül"],
+        "added": ["mély, ugráló basszus"]
+      },
+      "note": ""
+    },
+    {
+      "from": "jungle",
+      "to": "speed-garage",
+      "type": "influence",
+      "year": 1996,
+      "until": 1999,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["a basszus súlya és kezelése"]
+      },
+      "note": ""
+    },
+    {
+      "from": "uk-garage",
+      "to": "grime",
+      "type": "parent",
+      "year": 2002,
+      "changes": {
+        "removed": ["a swing", "a lágy énekminták"],
+        "moved": [],
+        "added": ["szögletes, nyers ritmus", "rap"]
+      },
+      "note": "A dubstep testvére – ugyanabból a szülőből, ugyanabban az évben, más irányba."
+    },
+    {
+      "from": "dubstep",
+      "to": "grime",
+      "type": "influence",
+      "year": 2002,
+      "until": 2006,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["a basszus súlya"]
+      },
+      "note": "Kölcsönös hatás egy szűk időszakban, amíg ugyanazokban a klubokban szóltak."
+    },
+    {
+      "from": "house",
+      "to": "footwork",
+      "type": "influence",
+      "year": 2005,
+      "changes": {
+        "removed": ["az egyenes négyes rács"],
+        "moved": ["a tempó felmegy, a lüktetés triolássá válik"],
+        "added": ["rövid, ismételt minták"]
+      },
+      "note": "A chicagói ghetto house-on keresztül – az a láncszem még hiányzik a listából."
+    },
+    {
+      "from": "dubstep",
+      "to": "trap",
+      "type": "influence",
+      "year": 2012,
+      "until": 2016,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["a half-time rács és a basszus súlya a rapre"]
+      },
+      "note": "Jó példa a kérdésedre: a trap NEM a dubstepből származik, de néhány évig erősen hatott rá."
+    },
+    {
+      "from": "trap",
+      "to": "future-bass",
+      "type": "parent",
+      "year": 2014,
+      "changes": {
+        "removed": ["a sötét hangzás"],
+        "moved": ["a főszereplő a basszusról a dallamra kerül"],
+        "added": ["hullámzó, dúr akkordfelületek"]
+      },
+      "note": ""
+    },
+    {
+      "from": "dubstep",
+      "to": "future-bass",
+      "type": "influence",
+      "year": 2014,
+      "until": 2018,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["a basszushangszín folyamatos mozgatása"]
+      },
+      "note": ""
+    }
+  ],
+
+  "missingParents": {
+    "$comment": "Ezeknek a műfajoknak a szülője nem elektronikus műfaj, ezért nem szerepel a listában, és nincs hozzájuk származási él. Lásd data/README.md.",
+    "house": "disco",
+    "techno": "elektro / funk",
+    "breakbeat": "hip-hop / funk breakek",
+    "drone": "komolyzenei minimalizmus"
+  }
+}
