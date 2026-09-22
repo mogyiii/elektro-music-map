@@ -1,6 +1,7 @@
 // Tengelyes nézet: bármelyik két tengely X-nek és Y-nak.
 
 import { dodgeLabels, labelWidth, LABEL_HEIGHT } from "../lib/layout.js";
+import { t } from "../lib/i18n.js";
 
 const PLOT_PAD = 6;        // százalék: hely a szélső pontok címkéinek
 const COMPACT_WIDTH = 480; // ez alatt a térkép pixelszélessége alatt csak pontok
@@ -22,7 +23,7 @@ export function createAxesView(ctx) {
       <div class="axis-label axis-label-x" data-x></div>
     </div>
     <div class="offscale" data-offscale hidden>
-      <span class="offscale-title">Nincs értéke ezen a tengelyen:</span>
+      <span class="offscale-title">${t("axesview.offscale")}</span>
       <span data-offscale-list></span>
     </div>`;
 
@@ -39,10 +40,10 @@ export function createAxesView(ctx) {
   };
 
   controls.innerHTML = `
-    <label><span>Vízszintes</span><select data-axis-x></select></label>
-    <label><span>Függőleges</span><select data-axis-y></select></label>
+    <label><span>${t("axesview.x")}</span><select data-axis-x></select></label>
+    <label><span>${t("axesview.y")}</span><select data-axis-y></select></label>
     <label class="check" data-felt-wrap>
-      <input type="checkbox" data-felt><span>érzett tempó</span>
+      <input type="checkbox" data-felt><span>${t("axesview.felt")}</span>
     </label>`;
 
   const axisX = controls.querySelector("[data-axis-x]");
@@ -54,8 +55,11 @@ export function createAxesView(ctx) {
     axisX.append(new Option(axis.label, key));
     axisY.append(new Option(axis.label, key));
   }
-  axisX.value = "tempo";
-  axisY.value = "rhythmGrid";
+  // nyelvváltáskor a nézet újraépül; a korábbi beállítás innen jön vissza
+  const start = ctx.state ?? {};
+  axisX.value = start.x ?? "tempo";
+  axisY.value = start.y ?? "rhythmGrid";
+  felt.checked = start.felt ?? false;
 
   for (const node of [axisX, axisY, felt]) node.addEventListener("change", render);
 
@@ -100,22 +104,22 @@ export function createAxesView(ctx) {
     let candidates;
     if (key === "function") {
       candidates = [
-        { at: 0, label: "hallgatás" },
-        { at: 0.5, label: "vegyes" },
-        { at: 1, label: "tánc" },
+        { at: 0, label: t("value.function.listening") },
+        { at: 0.5, label: t("value.function.mixed") },
+        { at: 1, label: t("value.function.dance") },
       ];
     } else if (key === "change") {
       candidates = [
-        { at: 0, label: "végig ugyanaz" },
-        { at: 0.5, label: "változik" },
-        { at: 1, label: "nem ismétlődik" },
+        { at: 0, label: t("axesview.tick.change.same") },
+        { at: 0.5, label: t("axesview.tick.change.mid") },
+        { at: 1, label: t("axesview.tick.change.never") },
       ];
     } else if (key === "density") {
       candidates = [1, 2, 3, 4, 5].map((v) => ({ at: v, label: String(v) }));
     } else {
       candidates = niceTicks(lo, hi).map((v) => ({ at: v, label: String(v) }));
     }
-    return { min: lo, max: hi, ticks: candidates.filter((t) => t.at >= lo && t.at <= hi) };
+    return { min: lo, max: hi, ticks: candidates.filter((tk) => tk.at >= lo && tk.at <= hi) };
   }
 
   // ---------- kirajzolás ----------
@@ -138,8 +142,12 @@ export function createAxesView(ctx) {
 
     el.labelX.textContent = axes[keyX].label;
     el.labelY.textContent = axes[keyY].label;
-    el.ticksX.replaceChildren(...sx.ticks.flatMap((t) => tickNodes(toPct(t.at, sx), t.label, "x")));
-    el.ticksY.replaceChildren(...sy.ticks.flatMap((t) => tickNodes(100 - toPct(t.at, sy), t.label, "y")));
+    el.ticksX.replaceChildren(
+      ...sx.ticks.flatMap((tk) => tickNodes(toPct(tk.at, sx), tk.label, "x"))
+    );
+    el.ticksY.replaceChildren(
+      ...sy.ticks.flatMap((tk) => tickNodes(100 - toPct(tk.at, sy), tk.label, "y"))
+    );
 
     const width = el.plot.clientWidth;
     const height = el.plot.clientHeight;
@@ -194,9 +202,15 @@ export function createAxesView(ctx) {
   }
 
   // A méret a fülváltáskor és az ablak átméretezésekor is változik.
-  new ResizeObserver(() => render()).observe(el.plot);
+  const sizeWatch = new ResizeObserver(() => render());
+  sizeWatch.observe(el.plot);
 
-  return { render, setSelected };
+  return {
+    render,
+    setSelected,
+    destroy: () => sizeWatch.disconnect(),
+    getState: () => ({ x: axisX.value, y: axisY.value, felt: felt.checked }),
+  };
 }
 
 // ---------- apró építőelemek ----------
@@ -230,9 +244,7 @@ function pointNode(p, width, height, onSelect) {
       textContent: p.genre.name,
     })
   );
-  b.title = p.multi
-    ? `${p.genre.name} – több értéke is van ezen a tengelyen, lásd az adatlapot`
-    : p.genre.name;
+  b.title = p.multi ? t("axesview.multi", { name: p.genre.name }) : p.genre.name;
   b.addEventListener("click", () => onSelect(p.genre.id));
   return b;
 }

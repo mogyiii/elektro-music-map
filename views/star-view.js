@@ -5,6 +5,8 @@
 import { createMetric, findGaps } from "../lib/similarity.js";
 import { embed, stress } from "../lib/mds.js";
 import { dodgeLabels, labelWidth, LABEL_HEIGHT, fitUniform } from "../lib/layout.js";
+import { blobPath, emptiestSpot } from "../lib/hull.js";
+import { t, familyLabel } from "../lib/i18n.js";
 import {
   buildSnapshots, buildPaths, positionAt, trailUpTo,
   stateAt, existsAt, firstYear, erasOf,
@@ -14,6 +16,9 @@ const FIT_PAD = 30;
 const COMPACT_WIDTH = 480;
 const LABEL_OFFSET = 10;
 const NS = "http://www.w3.org/2000/svg";
+
+// A családfolt ráhagyása a szélső tagjaihoz képest.
+const FAMILY_PAD = 26;
 
 // Egy újrarajzolás mérve 10–24 ms, ezért kb. 30 képkocka/mp a reális felső határ.
 // A lejátszás folyamatosan csúsztatja az évet, nem egészekben lépked – így lassú
@@ -26,6 +31,7 @@ const DEFAULT_SPEED = 4;
 export function createStarView(ctx) {
   const { axesFile, genres, edges, root, controls, onSelect, onSelectGap, onYearChange } = ctx;
   const axes = axesFile.axes;
+  const families = ctx.families ?? {};
 
   const linkSet = new Set(edges.flatMap((e) => [`${e.from}|${e.to}`, `${e.to}|${e.from}`]));
   const isLinked = (a, b) => linkSet.has(`${a}|${b}`);
@@ -36,19 +42,24 @@ export function createStarView(ctx) {
     ...genres.flatMap((g) => erasOf(g).map((e) => e.from))
   );
 
-  const weights = Object.fromEntries(Object.entries(axes).map(([k, a]) => [k, a.weight]));
-  let useFeltTempo = axesFile.similarity.useFeltTempo ?? false;
-  let showEdges = true;
-  let showGaps = true;
-  let showTrails = true;
-  let onlyUnlinkedGaps = false;
-  let year = endYear;
+  // nyelvváltáskor a nézet újraépül; a korábbi beállítások innen jönnek vissza
+  const start = ctx.state ?? {};
+  const weights = Object.fromEntries(
+    Object.entries(axes).map(([k, a]) => [k, start.weights?.[k] ?? a.weight])
+  );
+  let useFeltTempo = start.useFeltTempo ?? axesFile.similarity.useFeltTempo ?? false;
+  let showEdges = start.showEdges ?? true;
+  let showGaps = start.showGaps ?? true;
+  let showTrails = start.showTrails ?? true;
+  let showFamilies = start.showFamilies ?? true;
+  let onlyUnlinkedGaps = start.onlyUnlinkedGaps ?? false;
+  let year = start.year ?? endYear;
   let selected = null;
   let selectedGap = null;
   let layout = null;   // beágyazás – csak súly/tempó változásra számolódik újra
   let atYear = null;   // az adott évre vonatkozó rések, állapotok
   let playTimer = null;
-  let speed = DEFAULT_SPEED;
+  let speed = start.speed ?? DEFAULT_SPEED;
   let shownYear = null; // az adatlapon épp látható év
 
   root.innerHTML = `
@@ -57,23 +68,25 @@ export function createStarView(ctx) {
       <div class="points" data-points></div>
     </div>
     <div class="timebar">
-      <button type="button" class="play" data-play aria-label="Lejátszás">▶</button>
+      <button type="button" class="play" data-play aria-label="${t("starview.play")}">▶</button>
       <input type="range" class="year-slider" data-year>
       <label class="speed">
         <select data-speed>
           ${SPEEDS.map(
-            (s) => `<option value="${s}"${s === DEFAULT_SPEED ? " selected" : ""}>${s} év/mp</option>`
+            (s) =>
+              `<option value="${s}"${s === speed ? " selected" : ""}>` +
+              `${t("starview.speed", { n: s })}</option>`
           ).join("")}
         </select>
       </label>
       <span class="year-readout" data-year-out></span>
     </div>
     <div class="legend">
-      <span class="key"><i class="swatch sw-parent"></i>ebből lett</span>
-      <span class="key"><i class="swatch sw-influence"></i>hatott rá</span>
-      <span class="key"><i class="swatch sw-influence sw-past"></i>hatott rá, de már nem</span>
-      <span class="key"><i class="swatch sw-gap"></i>üres hely köztük</span>
-      <span class="key"><i class="swatch sw-trail"></i>merre tart</span>
+      <span class="key"><i class="swatch sw-parent"></i>${t("starview.legend.parent")}</span>
+      <span class="key"><i class="swatch sw-influence"></i>${t("starview.legend.influence")}</span>
+      <span class="key"><i class="swatch sw-influence sw-past"></i>${t("starview.legend.past")}</span>
+      <span class="key"><i class="swatch sw-gap"></i>${t("starview.legend.gap")}</span>
+      <span class="key"><i class="swatch sw-trail"></i>${t("starview.legend.trail")}</span>
     </div>
     <p class="star-footer" data-footer></p>`;
 
@@ -94,26 +107,29 @@ export function createStarView(ctx) {
   el.slider.step = 0.25;
   el.slider.value = year;
 
+  const checked = (on) => (on ? " checked" : "");
+
   controls.innerHTML = `
-    <label class="check"><input type="checkbox" data-edges checked><span>származási szálak</span></label>
-    <label class="check"><input type="checkbox" data-gaps checked><span>hiányzó rések</span></label>
-    <label class="check"><input type="checkbox" data-unlinked><span>csak rokonság nélküli rések</span></label>
-    <label class="check"><input type="checkbox" data-trails checked><span>nyomvonalak</span></label>
-    <label class="check"><input type="checkbox" data-felt><span>érzett tempó</span></label>
+    <label class="check"><input type="checkbox" data-edges${checked(showEdges)}><span>${t("starview.ctl.edges")}</span></label>
+    <label class="check"><input type="checkbox" data-gaps${checked(showGaps)}><span>${t("starview.ctl.gaps")}</span></label>
+    <label class="check"><input type="checkbox" data-unlinked${checked(onlyUnlinkedGaps)}><span>${t("starview.ctl.unlinked")}</span></label>
+    <label class="check"><input type="checkbox" data-trails${checked(showTrails)}><span>${t("starview.ctl.trails")}</span></label>
+    <label class="check"><input type="checkbox" data-families${checked(showFamilies)}><span>${t("starview.ctl.families")}</span></label>
+    <label class="check"><input type="checkbox" data-felt${checked(useFeltTempo)}><span>${t("starview.ctl.felt")}</span></label>
     <details class="weights">
-      <summary>Tengelysúlyok</summary>
+      <summary>${t("starview.weights")}</summary>
       <div class="weight-rows">
         ${Object.entries(axes)
           .map(
             ([key, axis]) => `
           <label class="weight-row">
             <span class="weight-name">${axis.label}</span>
-            <input type="range" min="0" max="2" step="0.1" value="${axis.weight}" data-weight="${key}">
-            <span class="weight-value" data-weight-value="${key}">${axis.weight.toFixed(1)}</span>
+            <input type="range" min="0" max="2" step="0.1" value="${weights[key]}" data-weight="${key}">
+            <span class="weight-value" data-weight-value="${key}">${weights[key].toFixed(1)}</span>
           </label>`
           )
           .join("")}
-        <button type="button" class="weight-reset" data-reset>Alapértékek</button>
+        <button type="button" class="weight-reset" data-reset>${t("starview.reset")}</button>
       </div>
     </details>`;
 
@@ -126,6 +142,7 @@ export function createStarView(ctx) {
   bind("[data-edges]", (v) => { showEdges = v; draw(); });
   bind("[data-gaps]", (v) => { showGaps = v; draw(); });
   bind("[data-trails]", (v) => { showTrails = v; draw(); });
+  bind("[data-families]", (v) => { showFamilies = v; draw(); });
   bind("[data-unlinked]", (v) => { onlyUnlinkedGaps = v; draw(); });
   bind("[data-felt]", (v) => { useFeltTempo = v; rebuild(); });
 
@@ -236,7 +253,7 @@ export function createStarView(ctx) {
     atYear = computeYear();
     // az év lejátszás közben tört szám, kiírni és az adatlapon használni kerekítve kell
     const shown = Math.round(year);
-    el.yearOut.textContent = year >= endYear ? `${shown} · ma` : shown;
+    el.yearOut.textContent = year >= endYear ? `${shown} · ${t("starview.today")}` : shown;
 
     const fitted = fitUniform(
       layout.coords.map((p) => [p[0], p[1]]),
@@ -282,11 +299,14 @@ export function createStarView(ctx) {
     drawLabels(placed, width, height);
 
     const movingNow = [...here.values()].filter((p) => p.moving).length;
-    el.footer.textContent =
-      `${here.size} műfaj ${shown}-ben · ${atYear.gaps.length} rés · ` +
-      `${movingNow} épp mozgásban · torzítás ${layout.stress.toFixed(2)} ` +
-      `(${Object.keys(axes).length} tengely 2 dimenzióba vetítve – ` +
-      `a képernyőn látott távolság közelítés)`;
+    el.footer.textContent = t("starview.footer", {
+      genres: here.size,
+      year: shown,
+      gaps: atYear.gaps.length,
+      moving: movingNow,
+      stress: layout.stress.toFixed(2),
+      axes: Object.keys(axes).length,
+    });
 
     highlight();
 
@@ -311,10 +331,70 @@ export function createStarView(ctx) {
     return node;
   }
 
+  /**
+   * Családfoltok. A tagság leszármazás szerinti, a pozíció hangzás szerinti –
+   * ezért eshet idegen műfaj a folton belülre. Nem takarjuk el: pont az a
+   * látnivaló, hogy a kettő nem ugyanaz.
+   */
+  function drawFamilies(placed) {
+    if (!showFamilies) return;
+
+    const groups = new Map();
+    for (const p of placed) {
+      const key = p.genre.family;
+      if (!key || !families[key]) continue;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push({ x: p.anchorX, y: p.anchorY });
+    }
+
+    // A felirat a foltján belül a legüresebb helyre kerül. Akadály minden pont,
+    // minden műfajcímke, és a már kiírt családnevek – így nem fedik egymást.
+    const busy = placed.flatMap((p) => [
+      { x: p.anchorX, y: p.anchorY },
+      { x: p.x + p.w / 2, y: p.y },
+    ]);
+    const names = [];
+
+    for (const [key, points] of groups) {
+      const family = families[key];
+      const d = blobPath(points, FAMILY_PAD);
+      if (!d) continue;
+
+      const blob = document.createElementNS(NS, "path");
+      blob.setAttribute("d", d);
+      blob.setAttribute("class", "family-blob");
+      blob.setAttribute("fill", family.color);
+      blob.setAttribute("stroke", family.color);
+      blob.dataset.family = key;
+
+      const title = document.createElementNS(NS, "title");
+      title.textContent = familyLabel(family.label);
+      blob.append(title);
+      el.svg.append(blob);
+
+      const spot = emptiestSpot(points, busy);
+      busy.push(spot);
+      names.push({ key, family, ...spot });
+    }
+
+    for (const n of names) {
+      const text = document.createElementNS(NS, "text");
+      text.setAttribute("class", "family-name");
+      text.setAttribute("x", n.x);
+      text.setAttribute("y", n.y);
+      text.setAttribute("text-anchor", "middle");
+      text.setAttribute("fill", n.family.color);
+      text.dataset.family = n.key;
+      text.textContent = familyLabel(n.family.label);
+      el.svg.append(text);
+    }
+  }
+
   function drawLines(placed, paths, compact, width, height) {
     el.svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
     el.svg.setAttribute("preserveAspectRatio", "none");
     el.svg.replaceChildren(arrowDefs());
+    drawFamilies(placed);
 
     const at = new Map(placed.map((p) => [p.genre.id, p]));
 
@@ -359,10 +439,16 @@ export function createStarView(ctx) {
         node.dataset.to = e.to;
 
         const title = document.createElementNS(NS, "title");
-        const span = e.until === undefined ? `${e.year}-től` : `${e.year}–${e.until}`;
+        const span =
+          e.until === undefined
+            ? t("starview.span.from", { year: e.year })
+            : t("starview.span.range", { from: e.year, until: e.until });
         title.textContent =
           `${byName(e.from)} → ${byName(e.to)} · ` +
-          (e.type === "parent" ? "szülő" : `hatás, ${span}${expired ? " (már nem eleven)" : ""}`);
+          (e.type === "parent"
+            ? t("starview.edge.parent")
+            : t("starview.edge.influence", { span }) +
+              (expired ? t("starview.edge.expired") : ""));
         node.append(title);
 
         el.svg.append(node);
@@ -382,7 +468,7 @@ export function createStarView(ctx) {
         // vastag, átlátszó vonal a könnyebb eltalálásért
         const hit = line(a.anchorX, a.anchorY, b.anchorX, b.anchorY, "gap-hit");
         const title = document.createElementNS(NS, "title");
-        title.textContent = `Üres hely: ${gap.a.name} ↔ ${gap.b.name}`;
+        title.textContent = t("starview.gapTitle", { a: gap.a.name, b: gap.b.name });
         hit.append(title);
         hit.addEventListener("click", () => onSelectGap(gap));
 
@@ -503,13 +589,31 @@ export function createStarView(ctx) {
     return erasOf(genre).length > 1 ? { ...era, year: shown } : null;
   }
 
-  new ResizeObserver(() => draw()).observe(el.star);
+  const sizeWatch = new ResizeObserver(() => draw());
+  sizeWatch.observe(el.star);
 
   return {
     render: () => (layout ? draw() : rebuild()),
     setSelected,
     neighboursOf,
     eraOf,
+    // nyelvváltáskor a nézet eldobódik: a futó lejátszást le kell állítani,
+    // különben az animáció egy már lecserélt DOM-ot rajzolna tovább
+    destroy: () => {
+      stop();
+      sizeWatch.disconnect();
+    },
+    getState: () => ({
+      year,
+      speed,
+      weights: { ...weights },
+      useFeltTempo,
+      showEdges,
+      showGaps,
+      showTrails,
+      showFamilies,
+      onlyUnlinkedGaps,
+    }),
     get useFeltTempo() { return useFeltTempo; },
     get year() { return year; },
   };

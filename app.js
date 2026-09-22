@@ -1,11 +1,14 @@
-// Betöltés, nézetváltás, és a közös adatlap.
+// Betöltés, nézetváltás, nyelvválasztás és a közös adatlap.
 
 import { createAxesView } from "./views/axes-view.js";
 import { createStarView } from "./views/star-view.js";
 import { genreCard, gapCard } from "./lib/detail.js";
+import { t, getLang, setLang, onLangChange, localizeAxesFile } from "./lib/i18n.js";
 
 const el = {
+  title: document.getElementById("app-title"),
   tabs: document.getElementById("view-tabs"),
+  lang: document.getElementById("lang-switch"),
   controls: document.getElementById("controls"),
   stage: document.getElementById("stage"),
   detail: document.getElementById("detail"),
@@ -65,11 +68,7 @@ function renderDetail() {
       era: active === "star" ? views.star.eraOf(selected) : null,
     });
   } else {
-    el.detail.innerHTML = `<p class="placeholder">${
-      active === "star"
-        ? "Válassz egy műfajt, vagy kattints egy szaggatott vonalra – az egy üres hely."
-        : "Válassz egy műfajt a térképen."
-    }</p>`;
+    el.detail.innerHTML = `<p class="placeholder">${t(`detail.placeholder.${active}`)}</p>`;
     return;
   }
 
@@ -95,9 +94,59 @@ function showView(name) {
   renderDetail();
 }
 
-function init() {
+// ---------- nyelv ----------
+
+/** A kereten lévő állandó szövegek: cím, fülek, nyelvkapcsoló. */
+function applyChrome() {
+  const lang = getLang();
+  document.documentElement.lang = lang;
+  document.title = t("app.title");
+  el.title.textContent = t("app.title");
+
+  for (const btn of el.tabs.children) {
+    btn.textContent = t(`view.${btn.dataset.view}`);
+  }
+
+  el.lang.setAttribute("aria-label", t("lang.group"));
+  for (const btn of el.lang.children) {
+    const on = btn.dataset.lang === lang;
+    btn.classList.toggle("active", on);
+    btn.setAttribute("aria-pressed", String(on));
+    btn.setAttribute("aria-label", t(`lang.${btn.dataset.lang}`));
+  }
+}
+
+function bindLangSwitch() {
+  for (const btn of el.lang.children) {
+    btn.addEventListener("click", () => setLang(btn.dataset.lang));
+  }
+}
+
+/**
+ * Nyelvváltás. A nézetek a szövegeiket egyszer, felépítéskor írják ki, ezért
+ * újra kell építeni őket – a beállításaikat (év, súlyok, tengelyek) átmentjük,
+ * hogy a térkép ne ugorjon vissza az alapállapotba.
+ */
+function relang() {
+  const state = { axes: views.axes.getState(), star: views.star.getState() };
+  for (const view of Object.values(views)) view.destroy?.();
+  applyChrome();
+  buildViews(state);
+  showView(active);
+}
+
+// ---------- felépítés ----------
+
+function buildViews(state = {}) {
+  el.stage.replaceChildren();
+  el.controls.replaceChildren();
   hosts = {};
   views = {};
+
+  // A tengelycímkék és kategóriák az adatban magyarul állnak; itt kapják meg
+  // az aktuális nyelv szavait, hogy a nézetek változatlanul használhassák.
+  const axesFile = localizeAxesFile(data.axesFile);
+  data.axes = axesFile.axes;
 
   for (const name of ["axes", "star"]) {
     const root = document.createElement("section");
@@ -115,22 +164,32 @@ function init() {
     root: hosts.axes.root,
     controls: hosts.axes.controls,
     onSelect: selectGenre,
+    state: state.axes,
   });
 
   views.star = createStarView({
-    axesFile: data.axesFile,
+    axesFile,
     genres: data.genres,
+    families: data.families,
     edges: data.edges,
     root: hosts.star.root,
     controls: hosts.star.controls,
     onSelect: selectGenre,
     onSelectGap: selectGap,
     onYearChange: () => active === "star" && renderDetail(),
+    state: state.star,
   });
+}
+
+function init() {
+  applyChrome();
+  bindLangSwitch();
+  buildViews();
 
   for (const btn of el.tabs.children) {
     btn.addEventListener("click", () => showView(btn.dataset.view));
   }
+  onLangChange(relang);
 
   let resizeTimer;
   window.addEventListener("resize", () => {
@@ -141,7 +200,7 @@ function init() {
     }, 120);
   });
 
-  showView("axes");
+  showView(active);
 }
 
 // ---------- betöltés ----------
@@ -163,15 +222,21 @@ try {
     axesFile,
     axes: axesFile.axes,
     genres: genresFile.genres,
+    families: genresFile.families ?? {},
     edges: edgesFile.edges,
     byId: new Map(genresFile.genres.map((g) => [g.id, g])),
   };
   init();
 } catch (err) {
-  el.error.hidden = false;
-  el.error.innerHTML =
-    `<strong>Nem sikerült betölteni az adatot.</strong><br>` +
-    `A böngésző <code>file://</code> alól nem olvas JSON-t. Indíts egy helyi kiszolgálót ` +
-    `a projekt mappájában – <code>npx serve .</code> vagy <code>python -m http.server</code> – ` +
-    `és onnan nyisd meg.<br><small>${err.message}</small>`;
+  // Itt nincs nézet, amit újra kellene építeni – csak a keret és a hibaszöveg.
+  const showError = () => {
+    applyChrome();
+    el.error.hidden = false;
+    el.error.innerHTML =
+      `<strong>${t("error.title")}</strong><br>${t("error.body")}` +
+      `<br><small>${err.message}</small>`;
+  };
+  bindLangSwitch();
+  onLangChange(showError);
+  showError();
 }

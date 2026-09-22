@@ -1,9 +1,10 @@
 // Adatellenőrzés: node data/validate.mjs
 import { readFileSync } from "node:fs";
+import { missingTranslations } from "../lib/i18n.js";
 
 const load = (f) => JSON.parse(readFileSync(new URL(f, import.meta.url), "utf8"));
 const axes = load("./axes.json");
-const { genres } = load("./genres.json");
+const { genres, families = {} } = load("./genres.json");
 const edgesFile = load("./edges.json");
 
 const errors = [];
@@ -46,6 +47,8 @@ for (const g of genres) {
   }
   if (!g.summary) warn.push(`${g.id}: nincs summary`);
   if (!g.examples?.length) warn.push(`${g.id}: nincs hangpélda`);
+  // a family elhagyható: akinek nincs testvére a listán, az ne kapjon
+  if (g.family !== undefined && !families[g.family]) at(`ismeretlen family: ${g.family}`);
 
   // korszakok
   if (g.eras) {
@@ -91,6 +94,22 @@ for (const [name, ax] of Object.entries(axes.axes)) {
     if (!(value >= 0 && value <= 1)) err(`axes.${name}: a hasonlóság kívül esik a 0–1 sávon: ${a}/${b} = ${value}`);
   }
 }
+
+// Fordítások teljessége. A címkék magyarul az adatban állnak, a fordításuk a
+// lib/i18n.js-ben – ezt semmi nem köti össze, ezért kell ellenőrizni. Ami
+// kimarad, az angol felületen magyarul jelenne meg, hibaüzenet nélkül.
+const eraLabels = new Set(
+  genres.flatMap((g) => (g.eras ?? []).map((e) => e.label).filter(Boolean))
+);
+const familyLabels = new Set(Object.values(families).map((f) => f.label));
+const i18n = missingTranslations(axes.axes, eraLabels, familyLabels);
+for (const m of i18n.missing) err(`hiányzó fordítás – ${m}`);
+for (const x of i18n.extra) warn.push(`fölösleges fordítás, nincs hozzá adat – ${x}`);
+
+// üres család: felvették, de egy műfaj sem hivatkozik rá
+const usedFamilies = new Set(genres.map((g) => g.family).filter(Boolean));
+for (const key of Object.keys(families))
+  if (!usedFamilies.has(key)) warn.push(`a(z) '${key}' családnak nincs egyetlen tagja sem`);
 
 // élek
 const seenEdges = new Set();

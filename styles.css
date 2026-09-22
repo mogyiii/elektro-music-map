@@ -61,6 +61,36 @@ body {
   color: var(--text);
 }
 
+/* nyelvválasztó – a fejléc jobb szélén, szűk kijelzőn a sor végén */
+
+.lang-switch {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+  padding: 2px;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+
+.lang-switch button {
+  background: none;
+  border: none;
+  border-radius: 5px;
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 4px 9px;
+  cursor: pointer;
+}
+.lang-switch button:hover { color: var(--text); }
+.lang-switch button.active {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
 /* ---- vezérlők ---- */
 
 .controls-bar {
@@ -361,6 +391,28 @@ main {
 .trail-head { stroke: var(--accent); stroke-width: 1.4; opacity: 0.45; pointer-events: none; }
 .trail-head.active { opacity: 1; }
 .arrowhead { fill: var(--accent); }
+
+/* családfolt: nagyobb összefoglaló halmaz a tagjai köré.
+   Minden más alatt van, és annyira halvány, hogy az átfedésük is olvasható
+   maradjon – két folt egymáson ne mossa össze a képet. */
+
+/* A szegély folytonos: a szaggatott vonal ezen a térképen már foglalt
+   (hatás, üres hely), egy szaggatott karika kapcsolatnak látszana. */
+.family-blob {
+  fill-opacity: 0.06;
+  stroke-opacity: 0.35;
+  stroke-width: 1;
+  pointer-events: none;
+}
+
+.family-name {
+  font: 600 11px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  pointer-events: none;
+  user-select: none;
+}
 
 /* ---- évcsúszka ---- */
 

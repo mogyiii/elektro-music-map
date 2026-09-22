@@ -67,6 +67,26 @@ Fontos: a rés-keresés az **eredeti tulajdonságvektorokon** fusson, ne a képe
 A csillagtérkép 5 dimenzió 2D-be vetítve, tehát két pont látszhat közelinek úgy is, hogy
 valójában távol vannak – abból hamis rés lenne.
 
+### Családok a csillagtérképen
+
+Nagyobb összefoglaló halmazok – House, Techno, UK bass, Hardcore… – lágy folttal
+a tagjaik köré, a nevükkel alatta. Ishkur „scene" címkéinek megfelelője.
+
+A tagság **leszármazás** szerinti, a pozíció **hangzás** szerinti, és pont ez benne az
+érdekes: ahol idegen műfaj esik egy folton belülre, ott a két igazság szétválik. Ma
+három ilyen van – a techno a house foltjában, az acid house és a deep house a technóéban,
+a hard techno a hardcore-éban. A karika tehát nem díszítés, hanem mérőműszer.
+
+Két dolog derült ki menet közben:
+
+- **Csak leszármazási halmazt érdemes felvenni.** Egy funkció szerinti „hallgatós"
+  csoport (ambient, drone, downtempo, trip-hop, IDM) a képernyő átlójának 41%-át fedte
+  le. Helyette az `ambient` maradt (ambient + drone, 3%), a többi család nélkül áll.
+- **A felbontás a szűk keresztmetszet, nem a megjelenítés.** Ishkurnak ~166 címkéje van,
+  ezért *kell* csoportosítania. Itt 55 van, és egy család 2–9 tagú. Az „Acid" példa a
+  bővítés előtt egyetlen bejegyzés lett volna; azóta megvan mind a három tagja
+  (acid house, acid techno, acidcore). A karika annál hasznosabb, minél mélyebb a lista.
+
 ## Adatmodell
 
 Két külön dolog kell, a mostani táblázatban csak az első van meg:
@@ -119,9 +139,35 @@ különben a lassú műfajok szomszédjának tűnnének.
 
 - statikus oldal (HTML/JS), hosztolás GitHub Pages
 - az adat külön JSON fájl(ok)ban, hogy könnyen bővíthető legyen
+- kétnyelvű felület (magyar/angol), a szövegek egy helyen: `lib/i18n.js` – lásd lentebb
 - dobminták Web Audio API-val generálva – nem kell hangfájl
 - hangpéldák: YouTube/Spotify/SoundCloud beágyazás vagy link (jogi okból nem saját hoszt)
 - mobilon is használható
+
+## Nyelvek
+
+Magyar és angol, kapcsoló a fejléc jobb szélén. Első nyitáskor a böngésző nyelve dönt,
+utána a választás megmarad. Váltáskor a nézetek újraépülnek – a szövegeiket egyszer,
+felépítéskor írják ki –, de a beállításaik (év, tengelysúlyok, kapcsolók, kiválasztott
+műfaj, aktív fül) átmentődnek, hogy a térkép ne ugorjon vissza az alapállapotba.
+
+A határ nem fájlok közt húzódik, hanem a szöveg fajtája szerint:
+
+- **Fordítva**: minden felületi szöveg, a tengelyek neve és kategóriái, a korszakcímkék.
+  Mind `lib/i18n.js`-ben, kulcs szerint – a kódban nincs beégetett mondat.
+- **Magyarul marad**: a műfajok saját szövege – `summary`, `notes`, a korszakok `note`
+  mezője, az élek `note`-ja és a `changes` felsorolásai. Ez próza, az adat része,
+  és a fordítása külön munka.
+
+Angol felületen tehát vegyes nyelvű az adatlap: a keret és a jellemzők angolok, a leíró
+mondatok magyarok. Ez tudatos döntés, de nem végleges – lásd a nyitott kérdéseket.
+
+Az `axes.json` magyarul tartja a címkéket, a fordításuk a kód oldalán áll. Így az adatséma
+nem változott. Cserébe az adat és a fordítás közt nincs semmilyen kötés: **új tengely, új
+kategória vagy új korszakcímke felvételekor a fordítást is fel kell venni**
+`lib/i18n.js`-be, különben angol felületen magyarul jelenik meg az a szó. Ez a fajta hiba
+csendben sül el, ezért a `validate.mjs` ellenőrzi – a magyar a referencia, ami abban
+megvan, annak minden nyelvben meg kell lennie.
 
 ## Sorrend
 
@@ -147,18 +193,28 @@ között erősen hatott rá.
 
 ## Mi kell még az adatba
 
-- **Korszakok a többi műfajhoz.** Most 17-nek van a 39-ből, 63 pillanatképpel. 1995 és
+- **Korszakok a többi műfajhoz.** Most 17-nek van az 55-ből, 63 pillanatképpel – a 16 új
+  bejegyzés mind egy helyben áll, korszak nélkül. 1995 és
   2003 között egyszerre 10-12 műfaj mozog, 2020 után viszont egy sem – a közelmúlt
   korszakolása hiányzik a leginkább.
 - **Még egy tengely?** A „változás" bekerült, és az ambient/drone ütközést megoldotta.
   A gabber viszont továbbra is a hiányra mutat: ott a lábdob már nem ritmus, hanem
   hangszín, és ezt a „főszereplő" tengely nem tudja kifejezni. Következő jelölt:
   **nyersesség** (tiszta ↔ torz), esetleg a **tér** (száraz ↔ visszhangos).
-- **Még több műfaj.** 39-nél tartunk; Ishkur kb. 166 címkével dolgozik. Az ő végpontjaik
+- **A maradék két árva.** A `trap` és a `future-bass` továbbra sincs családban: nincs
+  mellettük elég US bass vonalú bejegyzés. A többi korábbi árva megoldódott – a footwork
+  a juke mellé került, az IDM és a downtempo az Electronicába.
+- **Még több műfaj.** 55-nél tartunk; Ishkur kb. 166 címkével dolgozik. Az ő végpontjaik
   viszont csak neveket és a rajzuk poligonjait adják – a mi öt tengelyünkhöz semmit.
   A névlistájuk ellenőrzőlistának jó, az adatot magunknak kell megítélni.
-- **Hiányzó láncszemek.** Néhány élnél kiderült, hogy a köztes műfaj hiányzik
-  (pl. house → footwork a chicagói ghetto house-on keresztül).
+- **Hiányzó láncszemek.** Kettő megvan: a `garage-house` (house → UK garage) és a
+  `ghetto-house` (house → footwork), mindkettő közvetlen élként volt megkerülve, most
+  a lánc ki van írva. Ami még hiányzik: az amapiano alatt a kwaito, a footwork ágon
+  pedig minden, ami nem elektronikus.
+- **Angol adatszöveg.** A felület kétnyelvű, az adat nem: 55 összefoglaló, ~90
+  korszak-jegyzet és 73 él-jegyzet van csak magyarul. Ha bekerül, a mezők nyelvenkénti
+  változatot kapnának (`"summary": { "hu": "...", "en": "..." }`) – ez a séma, a validátor
+  és az adatlap kódjának módosítását jelenti egyszerre.
 
 Amit a megvalósítás közben tanultunk, és ami a további munkát befolyásolja:
 
@@ -182,3 +238,7 @@ Amit a megvalósítás közben tanultunk, és ami a további munkát befolyásol
 - A csillagtérkép elrendezése determinisztikus legyen (ugyanaz az adat = ugyanaz a kép),
   hogy ne mozogjon el minden betöltéskor.
 - Meddig érdemes bontani a műfajokat? (tearout külön van a dubsteptől – hol a határ?)
+- Megéri-e az adatszöveget is lefordítani? Az a projekt java része, és folyamatosan bővül:
+  minden új műfaj kétszeres munka lenne. Amíg nincs meg, az angol felület felemás – és
+  eldöntendő, hogy ez így maradhat-e, vagy jelölni kell valahogy, hogy a magyar mondat
+  ott szándék, nem hiba.

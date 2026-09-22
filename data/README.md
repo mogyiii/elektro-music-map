@@ -11,7 +11,27 @@ Három fájl. Minden nézet ebből a háromból dolgozik.
 A JSON-ban `$comment` kezdetű kulcsok a magyarázatok – a feldolgozó kód hagyja figyelmen kívül őket.
 
 Bővítés után érdemes lefuttatni: `node data/validate.mjs`. Ellenőrzi az id-ket, az élek
-hivatkozásait, az évszámok sorrendjét, a dobrácsok hosszát és a kategória-mátrixok teljességét.
+hivatkozásait, az évszámok sorrendjét, a dobrácsok hosszát, a kategória-mátrixok
+teljességét és a fordítások meglétét.
+
+## Nyelv
+
+Az adat magyarul van, és a prózai része az is marad: a `summary`, a `notes`, a korszakok
+`note` mezője, az élek `note`-ja és a `changes` listái angol felületen is magyarul
+jelennek meg.
+
+Ami **fordítva** van, az a rövid címkék köre: az `axes.json` `label` és `categories`
+értékei, a korszakok `label` mezője és a családok neve. A fordítás nem itt áll, hanem
+`lib/i18n.js`-ben (`AXES`, `ERA_LABELS`, `FAMILY_LABELS`) – így az adatséma egynyelvű
+és egyszerű maradt.
+
+Ebből egy szabály következik: **új tengely, kategória, korszakcímke vagy családnév
+felvételekor a fordítását is fel kell venni** `lib/i18n.js`-be. Ezt a `validate.mjs` ellenőrzi, mert
+különben csendben elsülne: a szó angol felületen is magyarul jelenne meg, hibaüzenet
+nélkül. A magyar a referencia – ami abban van, annak minden nyelvben meg kell lennie.
+
+Fordítva is szól: ha egy korszakcímke kikerül az adatból, a hozzá tartozó fordítás
+figyelmeztetést kap, mert már nincs mire vonatkoznia.
 
 ## genres.json – mezők
 
@@ -19,6 +39,7 @@ hivatkozásait, az évszámok sorrendjét, a dobrácsok hosszát és a kategóri
 |---|---|---|
 | `id` | kebab-case szöveg | egyedi, az élek erre hivatkoznak |
 | `name` | szöveg | megjelenítendő név |
+| `family` | kulcs vagy hiányzik | melyik összefoglaló halmazba tartozik – lásd lentebb |
 | `year` | szám | mikortól számít önálló műfajnak – **becslés, ellenőrizendő** |
 | `rhythmGrid` | tömb | mindig tömb, akkor is, ha egy elemű. Több elem = vegyes rács (pl. UK bass) |
 | `tempo` | `{min, max, felt}` | `felt` = az érzett tempó half-time-nál (dubstep: 140, de 70-nek hat). Ha nincs, `null` |
@@ -33,6 +54,29 @@ hivatkozásait, az évszámok sorrendjét, a dobrácsok hosszát és a kategóri
 | `notes` | szöveg | amit tudni kell, de nem fér a summary-be |
 | `eras` | tömb vagy hiányzik | korszakok, ha a műfaj változott az idők során |
 
+## Családok (`families` + `family`)
+
+Nagyobb összefoglaló halmazok a csillagtérképre: a tagjaik köré egy lágy folt
+rajzolódik, a család nevével. A `families` blokk a fájl tetején áll, minden
+bejegyzés egy `label` és egy `color`; a műfajok a `family` mezővel hivatkoznak rá.
+
+Jelenleg tizenegy van: House, Techno, Trance, Hardcore, Jungle / D&B, UK bass, Breaks,
+Ambient, Acid, Juke, Electronica.
+
+**A tagság leszármazás szerinti, a pozíció viszont hangzás szerinti.** Ezért eshet
+idegen műfaj a folton belülre – és ez nem hiba, hanem pont az, amiért a projekt készült.
+A legbeszédesebbek: az acid house a house és a techno foltjában is benne ül, pedig az
+Acid családba tartozik; a hard techno a hardcore-éban; a hard trance az Acidéban.
+
+A `family` **elhagyható**. Akinek nincs testvére a listán, az ne kapjon – jelenleg így
+jár a `trap` és a `future-bass`. Egytagú családot sem érdemes felvenni: abból egyetlen
+pont köré rajzolt karika lesz.
+
+Egy családot akkor érdemes felvenni, ha a tagjai **tömören** ülnek a térképen. A funkció
+szerinti csoportosítás itt megbukik: egy „hallgatós" halmaz (ambient, drone, downtempo,
+trip-hop, IDM) a képernyő átlójának 41%-át fedte le, vagyis a fél térképet. A mostani
+tizenegy család mind 29% alatt van.
+
 ## Korszakok (`eras`)
 
 Egy műfaj nem pont, hanem pálya: a 85-ös techno és a mai techno nem ugyanaz.
@@ -43,8 +87,8 @@ Minden korszak **teljes** pillanatkép – mind a hat tengely szerepel benne, pl
 | Mező | Jelentés |
 |---|---|
 | `from` | mikortól érvényes ez a korszak |
-| `label` | rövid név („detroiti", „brostep") |
-| `note` | mi változott és miért |
+| `label` | rövid név („detroiti", „brostep") – a fordítása `lib/i18n.js` → `ERA_LABELS` |
+| `note` | mi változott és miért – ez próza, nem fordul |
 
 Szabályok (a `validate.mjs` ellenőrzi):
 - az első korszak `from` értéke egyezzen a műfaj `year` mezőjével
@@ -55,8 +99,8 @@ Szabályok (a `validate.mjs` ellenőrzi):
 
 A korszakok közt a térkép egyenletesen csúsztatja át a műfajt, így a mozgás folyamatos.
 
-**Jelenleg 17 műfajnak van korszaka a 39-ből**, összesen 63 pillanatképpel. Ezek az én
-becsléseim, ellenőrizendők. A maradék 22 egy helyben áll, amíg nem kap `eras` mezőt –
+**Jelenleg 17 műfajnak van korszaka az 55-ből**, összesen 63 pillanatképpel. Ezek az én
+becsléseim, ellenőrizendők. A maradék 38 egy helyben áll, amíg nem kap `eras` mezőt –
 ami rendben is van ott, ahol a műfaj tényleg nem mozdult (riddim, drone, footwork).
 
 Három eset, amit a korszakolás megoldott:
@@ -111,7 +155,7 @@ Példa: a trap **nem** a dubstepből származik, de 2012 és 2016 között erős
 
 ## Ami hiányzik, és ez döntést igényel
 
-**0. A műfajlista 39 bejegyzésnél tart.** Összehasonlításul: Ishkur's Guide kb. 166 címkével
+**0. A műfajlista 55 bejegyzésnél tart.** Összehasonlításul: Ishkur's Guide kb. 166 címkével
 dolgozik. Az ő adatvégpontjaik (`coords.json`, `scenelabels.json`, `genrebiglabels.json`)
 viszont **csak neveket és a megrajzolt térképük poligonjait** tartalmazzák – se tempó,
 se ritmus, se származási élek. Átvenni tehát nincs mit: a mi hat tengelyünk értékeit
@@ -126,7 +170,17 @@ breakbeat ← hip-hop/funk breakek, drone ← komolyzenei minimalizmus. Lásd
 a linkek kitalálása rosszabb, mint az üres mező. A tervezett alak:
 `{ "title": "Előadó – Cím", "url": "https://...", "source": "youtube" }`
 
-**3. Bizonytalan évszámok.** Mindegyik becslés, de ezek a leginkább vitathatók:
+**3. A legutóbbi 16 bejegyzés végig becslés.** `garage-house`, `ghetto-house`, `juke`,
+`acid-techno`, `acidcore`, `hard-trance`, `uplifting-trance`, `melodic-techno`,
+`hardgroove`, `amapiano`, `big-room`, `frenchcore`, `jump-up`, `bassline`,
+`future-garage`, `glitch` – a tengelyértékeik, évszámaik és dobrácsaik ugyanolyan
+megítélés kérdései, mint a többié, csak még senki nem nézte át őket. Egy közülük
+kifejezetten meg van csonkítva: a **frenchcore** valójában 190–220 BPM-ig megy, de az
+`axes.json` tempó tengelye 200-ig van definiálva, és a normálás e fölött elromlana.
+Ha kell a valódi sáv, a tengely `range` mezőjét is fel kell vinni – az viszont az
+összes műfaj közti tempótávolságot átskálázza.
+
+**3/b. Bizonytalan évszámok.** Mindegyik becslés, de ezek a leginkább vitathatók:
 - `hard-techno` (1993) – a 145–160 BPM a mai formára igaz, a 90-es évekbeli lassabb volt;
   lehet, hogy két külön bejegyzés kéne
 - `tearout` (2010) – a 2010 körüli brostep és a 2019 utáni tearout-hullám nem ugyanaz

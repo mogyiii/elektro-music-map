@@ -84,18 +84,6 @@
       "note": ""
     },
     {
-      "from": "house",
-      "to": "uk-garage",
-      "type": "parent",
-      "year": 1995,
-      "changes": {
-        "removed": ["a négy lábdobból kettő-három"],
-        "moved": ["a maradék lábdob elcsúszik az ütemvonalról"],
-        "added": ["swing / shuffle", "vágott énekminták"]
-      },
-      "note": "US garage house-on keresztül."
-    },
-    {
       "from": "jungle",
       "to": "uk-garage",
       "type": "influence",
@@ -572,18 +560,6 @@
       "note": "Kölcsönös hatás egy szűk időszakban, amíg ugyanazokban a klubokban szóltak."
     },
     {
-      "from": "house",
-      "to": "footwork",
-      "type": "influence",
-      "year": 2005,
-      "changes": {
-        "removed": ["az egyenes négyes rács"],
-        "moved": ["a tempó felmegy, a lüktetés triolássá válik"],
-        "added": ["rövid, ismételt minták"]
-      },
-      "note": "A chicagói ghetto house-on keresztül – az a láncszem még hiányzik a listából."
-    },
-    {
       "from": "dubstep",
       "to": "trap",
       "type": "influence",
@@ -618,6 +594,307 @@
         "removed": [],
         "moved": [],
         "added": ["a basszushangszín folyamatos mozgatása"]
+      },
+      "note": ""
+    },
+    {
+      "from": "house",
+      "to": "garage-house",
+      "type": "parent",
+      "year": 1987,
+      "changes": {
+        "removed": [],
+        "moved": ["a főszereplő a groove-ról az énekre kerül"],
+        "added": ["gospel-gyökerű ének","élő akkordkíséret"]
+      },
+      "note": ""
+    },
+    {
+      "from": "garage-house",
+      "to": "uk-garage",
+      "type": "parent",
+      "year": 1995,
+      "changes": {
+        "removed": ["a négy lábdobból kettő-három"],
+        "moved": ["a maradék lábdob elcsúszik az ütemvonalról"],
+        "added": ["swing / shuffle","vágott énekminták"]
+      },
+      "note": "Ez volt korábban közvetlenül a house-ból húzva, 'US garage house-on keresztül' megjegyzéssel. Most a láncszem is a listán van."
+    },
+    {
+      "from": "house",
+      "to": "ghetto-house",
+      "type": "parent",
+      "year": 1992,
+      "changes": {
+        "removed": ["a rétegek nagy része","a dallam"],
+        "moved": ["a tempó jóval feljebb megy"],
+        "added": ["rövid, bekiabált énekminták"]
+      },
+      "note": ""
+    },
+    {
+      "from": "ghetto-house",
+      "to": "juke",
+      "type": "parent",
+      "year": 1997,
+      "changes": {
+        "removed": ["az egyenletes négyes lábdob"],
+        "moved": ["a lábdob hármas csoportokba rendeződik"],
+        "added": ["sűrűn ismételt, rövid minták"]
+      },
+      "note": ""
+    },
+    {
+      "from": "juke",
+      "to": "footwork",
+      "type": "parent",
+      "year": 2005,
+      "changes": {
+        "removed": ["a maradék énekréteg nagy része"],
+        "moved": ["a hangsúly a táncos lábmunkájához igazodik"],
+        "added": ["triolás, egymásra torlódó dobfigurák"]
+      },
+      "note": ""
+    },
+    {
+      "from": "acid-house",
+      "to": "acid-techno",
+      "type": "parent",
+      "year": 1993,
+      "changes": {
+        "removed": [],
+        "moved": ["a tempó és a keménység feljebb megy"],
+        "added": ["torzítás a 303-on","több párhuzamos réteg"]
+      },
+      "note": ""
+    },
+    {
+      "from": "techno",
+      "to": "acid-techno",
+      "type": "influence",
+      "year": 1993,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["gépies, hideg dobhangszínek"]
+      },
+      "note": ""
+    },
+    {
+      "from": "acid-techno",
+      "to": "acidcore",
+      "type": "parent",
+      "year": 1995,
+      "changes": {
+        "removed": [],
+        "moved": ["a tempó hardcore sávba megy"],
+        "added": ["torzított lábdob","egyszerre több csavart 303-vonal"]
+      },
+      "note": ""
+    },
+    {
+      "from": "gabber",
+      "to": "acidcore",
+      "type": "influence",
+      "year": 1995,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["a torzított lábdob mint hangszín"]
+      },
+      "note": ""
+    },
+    {
+      "from": "trance",
+      "to": "hard-trance",
+      "type": "parent",
+      "year": 1993,
+      "changes": {
+        "removed": ["a hosszú, lebegő átvezetések"],
+        "moved": ["a hangsúly a feszültségről a lökésre kerül"],
+        "added": ["rövid, kemény lábdob"]
+      },
+      "note": ""
+    },
+    {
+      "from": "hard-techno",
+      "to": "hard-trance",
+      "type": "influence",
+      "year": 1993,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["nyers, torzított hangszínek"]
+      },
+      "note": ""
+    },
+    {
+      "from": "trance",
+      "to": "uplifting-trance",
+      "type": "parent",
+      "year": 1997,
+      "changes": {
+        "removed": [],
+        "moved": ["a felépítés percekre nyúlik, egyetlen csúcsponttal"],
+        "added": ["széles akkordfelbontások","dúr hangzás"]
+      },
+      "note": ""
+    },
+    {
+      "from": "techno",
+      "to": "melodic-techno",
+      "type": "parent",
+      "year": 2014,
+      "changes": {
+        "removed": [],
+        "moved": ["a tempó lejjebb megy","a főszereplő a dobról a dallamra kerül"],
+        "added": ["moll dallamvezetés","hosszan nyíló hangszínek"]
+      },
+      "note": ""
+    },
+    {
+      "from": "progressive-house",
+      "to": "melodic-techno",
+      "type": "influence",
+      "year": 2014,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["rétegenként épülő, hosszú szerkezet"]
+      },
+      "note": ""
+    },
+    {
+      "from": "techno",
+      "to": "hardgroove",
+      "type": "parent",
+      "year": 1998,
+      "changes": {
+        "removed": ["a dallamréteg"],
+        "moved": ["a figyelem a dobrétegek egymásra csúszására kerül"],
+        "added": ["réteges ütőhangszerek","hurkolt funk-töredékek"]
+      },
+      "note": ""
+    },
+    {
+      "from": "deep-house",
+      "to": "amapiano",
+      "type": "parent",
+      "year": 2016,
+      "changes": {
+        "removed": [],
+        "moved": ["a tempó lejjebb megy","a főszereplő az akkordokról a basszusra kerül"],
+        "added": ["log drum: hajlított basszushang","shaker-réteg"]
+      },
+      "note": "Kwaitón keresztül – az a láncszem még hiányzik a listából."
+    },
+    {
+      "from": "progressive-house",
+      "to": "big-room",
+      "type": "parent",
+      "year": 2011,
+      "changes": {
+        "removed": ["a groove a leejtés alól"],
+        "moved": ["a szerkezet a felvezetés–leejtés párra egyszerűsödik"],
+        "added": ["egyetlen torz vezérhang"]
+      },
+      "note": ""
+    },
+    {
+      "from": "hardstyle",
+      "to": "big-room",
+      "type": "influence",
+      "year": 2011,
+      "until": 2016,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["a leejtés alá tett kemény, torz lábdob"]
+      },
+      "note": ""
+    },
+    {
+      "from": "gabber",
+      "to": "frenchcore",
+      "type": "parent",
+      "year": 1995,
+      "changes": {
+        "removed": ["a rétegek egy része"],
+        "moved": ["a tempó tovább emelkedik","a lábdob hangszínné válik"],
+        "added": ["a lábdob hajlítása hangmagasságban"]
+      },
+      "note": ""
+    },
+    {
+      "from": "acidcore",
+      "to": "frenchcore",
+      "type": "influence",
+      "year": 1996,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["csavart 303-vonalak a dob alá"]
+      },
+      "note": ""
+    },
+    {
+      "from": "drum-and-bass",
+      "to": "jump-up",
+      "type": "parent",
+      "year": 1995,
+      "changes": {
+        "removed": ["a break bonyolultsága"],
+        "moved": ["a főszereplő a dobról a basszusra kerül"],
+        "added": ["rövid, ugráló basszusmotívum"]
+      },
+      "note": ""
+    },
+    {
+      "from": "speed-garage",
+      "to": "bassline",
+      "type": "parent",
+      "year": 2002,
+      "changes": {
+        "removed": ["a 2-step svung"],
+        "moved": ["vissza az egyenes négyes rácsra"],
+        "added": ["pattogó, rövid basszusfigura"]
+      },
+      "note": ""
+    },
+    {
+      "from": "dubstep",
+      "to": "future-garage",
+      "type": "parent",
+      "year": 2009,
+      "changes": {
+        "removed": ["a hangerő és a torzítás"],
+        "moved": ["a funkció táncról hallgatásra tolódik"],
+        "added": ["elmosott énekfoszlányok","szobányi visszhang"]
+      },
+      "note": ""
+    },
+    {
+      "from": "uk-garage",
+      "to": "future-garage",
+      "type": "influence",
+      "year": 2009,
+      "changes": {
+        "removed": [],
+        "moved": [],
+        "added": ["2-step svung a dobra"]
+      },
+      "note": ""
+    },
+    {
+      "from": "idm",
+      "to": "glitch",
+      "type": "parent",
+      "year": 1998,
+      "changes": {
+        "removed": ["a megmaradt egyenletes rács"],
+        "moved": ["a figyelem a dallamról a hangszín hibáira kerül"],
+        "added": ["kattanás, digitális törés mint hangszer"]
       },
       "note": ""
     }

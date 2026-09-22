@@ -1,10 +1,27 @@
 {
   "$comment": "Műfajok = tulajdonságvektorok a térképekhez. A mezők jelentését lásd data/README.md. A 'year' értékek becslések, ellenőrizendők.",
 
+  "$comment_families": "Nagyobb összefoglaló halmazok a csillagtérképre. A tagság LESZÁRMAZÁS szerinti, a pozíció viszont hangzás szerinti – ahol egy idegen műfaj a folton belülre esik, az nem hiba, hanem a projekt lényege. A 'family' mező elhagyható: akinek nincs testvére a listán, az ne kapjon.",
+
+  "families": {
+    "house":     { "label": "House",        "color": "#4f8ad6" },
+    "techno":    { "label": "Techno",       "color": "#7d6fd4" },
+    "trance":    { "label": "Trance",       "color": "#b86fc4" },
+    "hardcore":  { "label": "Hardcore",     "color": "#d2604f" },
+    "jungle":    { "label": "Jungle / D&B", "color": "#4fa87a" },
+    "ukbass":    { "label": "UK bass",      "color": "#d99a3d" },
+    "breaks":    { "label": "Breaks",       "color": "#3fa3b0" },
+    "ambient":   { "label": "Ambient",      "color": "#8089a0" },
+    "acid":      { "label": "Acid",         "color": "#b5c14f" },
+    "juke":      { "label": "Juke",         "color": "#c76fa0" },
+    "electronica": { "label": "Electronica", "color": "#9aa0d8" }
+  },
+
   "genres": [
     {
       "id": "house",
       "name": "House",
+      "family": "house",
       "year": 1984,
       "rhythmGrid": ["straight"],
       "tempo": { "min": 118, "max": 128, "felt": null },
@@ -60,6 +77,7 @@
     {
       "id": "acid-house",
       "name": "Acid house",
+      "family": "acid",
       "year": 1987,
       "rhythmGrid": ["straight"],
       "tempo": { "min": 118, "max": 128, "felt": null },
@@ -80,6 +98,7 @@
     {
       "id": "deep-house",
       "name": "Deep house",
+      "family": "house",
       "year": 1988,
       "rhythmGrid": ["straight"],
       "tempo": { "min": 118, "max": 125, "felt": null },
@@ -100,6 +119,7 @@
     {
       "id": "tech-house",
       "name": "Tech house",
+      "family": "house",
       "year": 1997,
       "rhythmGrid": ["straight"],
       "tempo": { "min": 122, "max": 128, "felt": null },
@@ -120,6 +140,7 @@
     {
       "id": "progressive-house",
       "name": "Progressive house",
+      "family": "house",
       "year": 1992,
       "rhythmGrid": ["straight"],
       "tempo": { "min": 126, "max": 132, "felt": null },
@@ -164,6 +185,7 @@
     {
       "id": "electro",
       "name": "Electro",
+      "family": "breaks",
       "year": 1982,
       "rhythmGrid": ["broken"],
       "tempo": { "min": 110, "max": 130, "felt": null },
@@ -184,6 +206,7 @@
     {
       "id": "techno",
       "name": "Techno",
+      "family": "techno",
       "year": 1985,
       "rhythmGrid": ["straight"],
       "tempo": { "min": 130, "max": 140, "felt": null },
@@ -239,6 +262,7 @@
     {
       "id": "minimal-techno",
       "name": "Minimal techno",
+      "family": "techno",
       "year": 1994,
       "rhythmGrid": ["straight"],
       "tempo": { "min": 125, "max": 130, "felt": null },
@@ -283,6 +307,7 @@
     {
       "id": "trance",
       "name": "Trance",
+      "family": "trance",
       "year": 1992,
       "rhythmGrid": ["straight"],
       "tempo": { "min": 135, "max": 140, "felt": null },
@@ -338,6 +363,7 @@
     {
       "id": "psytrance",
       "name": "Psytrance",
+      "family": "trance",
       "year": 1994,
       "rhythmGrid": ["straight"],
       "tempo": { "min": 140, "max": 150, "felt": null },
@@ -393,6 +419,7 @@
     {
       "id": "ambient-techno",
       "name": "Ambient techno",
+      "family": "techno",
       "year": 1992,
       "rhythmGrid": ["straight"],
       "tempo": { "min": 110, "max": 130, "felt": null },
@@ -413,6 +440,7 @@
     {
       "id": "idm",
       "name": "IDM",
+      "family": "electronica",
       "year": 1992,
       "rhythmGrid": ["broken"],
       "tempo": { "min": 100, "max": 160, "felt": null },
@@ -457,6 +485,7 @@
     {
       "id": "downtempo",
       "name": "Downtempo",
+      "family": "electronica",
       "year": 1993,
       "rhythmGrid": ["straight"],
       "tempo": { "min": 90, "max": 110, "felt": null },
@@ -477,6 +506,7 @@
     {
       "id": "trip-hop",
       "name": "Trip-hop",
+      "family": "electronica",
       "year": 1993,
       "rhythmGrid": ["broken"],
       "tempo": { "min": 80, "max": 100, "felt": null },
@@ -497,6 +527,7 @@
     {
       "id": "hard-techno",
       "name": "Hard techno",
+      "family": "techno",
       "year": 1993,
       "rhythmGrid": ["straight"],
       "tempo": { "min": 145, "max": 160, "felt": null },
@@ -541,6 +572,7 @@
     {
       "id": "bass-house",
       "name": "Bass house",
+      "family": "house",
       "year": 2014,
       "rhythmGrid": ["straight"],
       "tempo": { "min": 125, "max": 128, "felt": null },
@@ -561,6 +593,7 @@
     {
       "id": "dub-techno",
       "name": "Dub techno",
+      "family": "techno",
       "year": 1993,
       "rhythmGrid": ["straight"],
       "tempo": { "min": 115, "max": 125, "felt": null },
@@ -581,6 +614,7 @@
     {
       "id": "uk-garage",
       "name": "UK garage",
+      "family": "ukbass",
       "year": 1995,
       "rhythmGrid": ["two-step"],
       "tempo": { "min": 130, "max": 135, "felt": null },
@@ -625,6 +659,7 @@
     {
       "id": "breakbeat",
       "name": "Breakbeat",
+      "family": "breaks",
       "year": 1990,
       "rhythmGrid": ["broken"],
       "tempo": { "min": 125, "max": 135, "felt": null },
@@ -645,6 +680,7 @@
     {
       "id": "jungle",
       "name": "Jungle",
+      "family": "jungle",
       "year": 1993,
       "rhythmGrid": ["broken"],
       "tempo": { "min": 160, "max": 170, "felt": null },
@@ -689,6 +725,7 @@
     {
       "id": "drum-and-bass",
       "name": "Drum & bass",
+      "family": "jungle",
       "year": 1995,
       "rhythmGrid": ["broken"],
       "tempo": { "min": 170, "max": 176, "felt": null },
@@ -744,6 +781,7 @@
     {
       "id": "uk-bass",
       "name": "UK bass / post-dubstep",
+      "family": "ukbass",
       "year": 2009,
       "rhythmGrid": ["two-step", "half-time"],
       "tempo": { "min": 130, "max": 140, "felt": null },
@@ -764,6 +802,7 @@
     {
       "id": "dubstep",
       "name": "Dubstep",
+      "family": "ukbass",
       "year": 2002,
       "rhythmGrid": ["half-time"],
       "tempo": { "min": 138, "max": 142, "felt": 70 },
@@ -819,6 +858,7 @@
     {
       "id": "riddim",
       "name": "Riddim",
+      "family": "ukbass",
       "year": 2015,
       "rhythmGrid": ["half-time"],
       "tempo": { "min": 140, "max": 150, "felt": 72 },
@@ -839,6 +879,7 @@
     {
       "id": "tearout",
       "name": "Tearout",
+      "family": "ukbass",
       "year": 2010,
       "rhythmGrid": ["half-time"],
       "tempo": { "min": 140, "max": 150, "felt": 72 },
@@ -883,6 +924,7 @@
     {
       "id": "breakbeat-hardcore",
       "name": "Breakbeat hardcore",
+      "family": "hardcore",
       "year": 1991,
       "rhythmGrid": ["broken"],
       "tempo": { "min": 130, "max": 150, "felt": null },
@@ -903,6 +945,7 @@
     {
       "id": "happy-hardcore",
       "name": "Happy hardcore",
+      "family": "hardcore",
       "year": 1994,
       "rhythmGrid": ["straight"],
       "tempo": { "min": 160, "max": 180, "felt": null },
@@ -947,6 +990,7 @@
     {
       "id": "gabber",
       "name": "Gabber",
+      "family": "hardcore",
       "year": 1992,
       "rhythmGrid": ["straight"],
       "tempo": { "min": 170, "max": 200, "felt": null },
@@ -1002,6 +1046,7 @@
     {
       "id": "hardstyle",
       "name": "Hardstyle",
+      "family": "hardcore",
       "year": 2002,
       "rhythmGrid": ["straight"],
       "tempo": { "min": 145, "max": 155, "felt": null },
@@ -1046,6 +1091,7 @@
     {
       "id": "big-beat",
       "name": "Big beat",
+      "family": "breaks",
       "year": 1995,
       "rhythmGrid": ["broken"],
       "tempo": { "min": 120, "max": 135, "felt": null },
@@ -1066,6 +1112,7 @@
     {
       "id": "neurofunk",
       "name": "Neurofunk",
+      "family": "jungle",
       "year": 1997,
       "rhythmGrid": ["broken"],
       "tempo": { "min": 172, "max": 176, "felt": null },
@@ -1086,6 +1133,7 @@
     {
       "id": "liquid-dnb",
       "name": "Liquid drum & bass",
+      "family": "jungle",
       "year": 2000,
       "rhythmGrid": ["broken"],
       "tempo": { "min": 170, "max": 175, "felt": null },
@@ -1106,6 +1154,7 @@
     {
       "id": "speed-garage",
       "name": "Speed garage",
+      "family": "ukbass",
       "year": 1996,
       "rhythmGrid": ["two-step"],
       "tempo": { "min": 130, "max": 140, "felt": null },
@@ -1126,6 +1175,7 @@
     {
       "id": "grime",
       "name": "Grime",
+      "family": "ukbass",
       "year": 2002,
       "rhythmGrid": ["two-step", "broken"],
       "tempo": { "min": 138, "max": 142, "felt": null },
@@ -1146,6 +1196,7 @@
     {
       "id": "footwork",
       "name": "Footwork",
+      "family": "juke",
       "year": 2005,
       "rhythmGrid": ["broken"],
       "tempo": { "min": 155, "max": 165, "felt": null },
@@ -1230,6 +1281,7 @@
     {
       "id": "ambient",
       "name": "Ambient",
+      "family": "ambient",
       "year": 1978,
       "rhythmGrid": ["none"],
       "tempo": { "min": null, "max": null, "felt": null },
@@ -1246,6 +1298,7 @@
     {
       "id": "drone",
       "name": "Drone",
+      "family": "ambient",
       "year": 1964,
       "rhythmGrid": ["none"],
       "tempo": { "min": null, "max": null, "felt": null },
@@ -1256,6 +1309,342 @@
       "summary": "Kitartott hang, minimális változással. Még az ambient lassú mozgása is eltűnik.",
       "externalInfluences": ["minimalizmus (komolyzene)"],
       "drumPattern": null,
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "garage-house",
+      "name": "Garage house",
+      "family": "house",
+      "year": 1987,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 120, "max": 128, "felt": null },
+      "density": 3,
+      "lead": ["melody","drums"],
+      "function": 1.0,
+      "change": 0.50,
+      "summary": "New York-i house: gospel- és soul-gyökerű ének, élő akkordok, meleg hangzás. A rács ugyanaz a négyes lábdob, de a főszereplő az ének, nem a groove.",
+      "externalInfluences": ["disco","gospel","soul"],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": "A nevét a Paradise Garage-ról kapta. Ez a hiányzó láncszem house és UK garage közt – az él korábban közvetlenül a house-ból ment."
+    },
+    {
+      "id": "ghetto-house",
+      "name": "Ghetto house",
+      "family": "juke",
+      "year": 1992,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 145, "max": 160, "felt": null },
+      "density": 2,
+      "lead": ["drums","bass"],
+      "function": 1.0,
+      "change": 0.25,
+      "summary": "Chicagói house felgyorsítva és lecsupaszítva: nyers dobgép, rövid bekiabált énekminták, minimális réteg. Innen indul a juke és a footwork vonala.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,1,0,1, 0,1,0,1, 0,1,0,1, 0,1,0,1]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "juke",
+      "name": "Juke",
+      "family": "juke",
+      "year": 1997,
+      "rhythmGrid": ["broken"],
+      "tempo": { "min": 155, "max": 165, "felt": null },
+      "density": 3,
+      "lead": ["drums","bass"],
+      "function": 1.0,
+      "change": 0.45,
+      "summary": "A ghetto house négyes rácsa szétesik: a lábdob hármas csoportokba rendeződik, a minták rövidek és sűrűn ismétlődnek. A footwork közvetlen előzménye.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,1, 0,0,1,0, 1,0,0,1, 0,0,1,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,1,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,1,0,0, 0,0,1,0, 0,1,0,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "acid-techno",
+      "name": "Acid techno",
+      "family": "acid",
+      "year": 1993,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 135, "max": 150, "felt": null },
+      "density": 3,
+      "lead": ["timbre","drums"],
+      "function": 1.0,
+      "change": 0.50,
+      "summary": "Techno-rács és a 303 csúszkáló hangszíne együtt, gyorsabban és keményebben, mint az acid house-ban. Több réteg, torzítás, tolakodóbb basszusvonal.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "acidcore",
+      "name": "Acidcore",
+      "family": "acid",
+      "year": 1995,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 160, "max": 190, "felt": null },
+      "density": 4,
+      "lead": ["timbre","drums"],
+      "function": 1.0,
+      "change": 0.50,
+      "summary": "Az acid techno hardcore tempóban: torzított lábdob, egyszerre több csavart 303-vonal. A savas hangszín marad a főszereplő, csak minden keményebb körülötte.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "hard-trance",
+      "name": "Hard trance",
+      "family": "trance",
+      "year": 1993,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 140, "max": 150, "felt": null },
+      "density": 3,
+      "lead": ["melody","drums"],
+      "function": 1.0,
+      "change": 0.50,
+      "summary": "Trance dallamvezetés kemény, rövid lábdobbal és nyers hangszínekkel. A hangsúly a levegőben tartott feszültségről a lökésre kerül.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "uplifting-trance",
+      "name": "Uplifting trance",
+      "family": "trance",
+      "year": 1997,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 136, "max": 142, "felt": null },
+      "density": 4,
+      "lead": ["melody"],
+      "function": 1.0,
+      "change": 0.60,
+      "summary": "A trance dúr irányba fordul: hosszú, több percen átívelő felépítés, széles akkordfelbontások, egyetlen kiugró csúcspont. A dallam viszi az egészet.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "melodic-techno",
+      "name": "Melodic techno",
+      "family": "techno",
+      "year": 2014,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 120, "max": 126, "felt": null },
+      "density": 3,
+      "lead": ["melody","timbre"],
+      "function": 1.0,
+      "change": 0.55,
+      "summary": "Techno lüktetés lassabban, moll dallamokkal és hosszan nyíló hangszínekkel. A progresszív house szerkezete techno hangszínekkel megtöltve.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "hardgroove",
+      "name": "Hardgroove",
+      "family": "techno",
+      "year": 1998,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 140, "max": 150, "felt": null },
+      "density": 3,
+      "lead": ["drums"],
+      "function": 1.0,
+      "change": 0.35,
+      "summary": "Techno, ahol a dob visszaveszi a főszerepet: réteges ütőhangszerek, hurkolt funk-töredékek, folyamatos lüktetés dallam nélkül.",
+      "externalInfluences": ["funk"],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,1,0, 1,0,0,1, 0,0,1,0, 1,0,0,0],
+        "hat":   [1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "amapiano",
+      "name": "Amapiano",
+      "family": "house",
+      "year": 2016,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 108, "max": 115, "felt": null },
+      "density": 3,
+      "lead": ["bass","drums"],
+      "function": 1.0,
+      "change": 0.40,
+      "summary": "Dél-afrikai house lassabb tempóban: a log drum hajlított basszushangja a főszereplő, körülötte jazzes akkordok, széles tér és shaker-réteg.",
+      "externalInfluences": ["kwaito","jazz"],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 0,0,1,0, 0,0,0,0, 0,0,1,0],
+        "hat":   [0,0,1,1, 0,0,1,0, 0,0,1,1, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "big-room",
+      "name": "Big room",
+      "family": "house",
+      "year": 2011,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 126, "max": 132, "felt": null },
+      "density": 3,
+      "lead": ["drums","melody"],
+      "function": 1.0,
+      "change": 0.65,
+      "summary": "Fesztiválra írt house: hosszú felvezetés, kiürített leejtés, egyetlen torz vezérhang. A groove helyét a várakozás és a becsapódás veszi át.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "frenchcore",
+      "name": "Frenchcore",
+      "family": "hardcore",
+      "year": 1995,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 190, "max": 200, "felt": null },
+      "density": 3,
+      "lead": ["drums","timbre"],
+      "function": 1.0,
+      "change": 0.45,
+      "summary": "Nagyon gyors, tolakodó lábdob, ami már inkább hangszín, mint ütés. A gabberhez képest kevesebb réteg és több hajlítás magán a dobon.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0]
+      },
+      "examples": [],
+      "notes": "A valóságban 190–220 BPM-ig megy, itt 200-nál meg van vágva: a tempó tengely az axes.json-ban 200-ig van definiálva, afölött a normálás elromlana."
+    },
+    {
+      "id": "jump-up",
+      "name": "Jump-up",
+      "family": "jungle",
+      "year": 1995,
+      "rhythmGrid": ["broken"],
+      "tempo": { "min": 170, "max": 176, "felt": null },
+      "density": 3,
+      "lead": ["bass","drums"],
+      "function": 1.0,
+      "change": 0.45,
+      "summary": "Drum & bass, ahol a basszus rövid, ugráló, dallamos figurákat játszik. A break egyszerűbb, a hangsúly a basszus visszatérő motívumán van.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,1,0, 0,0,1,0, 0,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "bassline",
+      "name": "Bassline",
+      "family": "ukbass",
+      "year": 2002,
+      "rhythmGrid": ["straight"],
+      "tempo": { "min": 135, "max": 142, "felt": null },
+      "density": 3,
+      "lead": ["bass"],
+      "function": 1.0,
+      "change": 0.45,
+      "summary": "Speed garage négyes rácson: rövid, pattogó basszusfigura vágott énekminta alatt. Észak-angol klubzene, a UK garage vonal egyenes ága.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,1,1,0, 0,0,1,0, 0,1,1,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "future-garage",
+      "name": "Future garage",
+      "family": "ukbass",
+      "year": 2009,
+      "rhythmGrid": ["two-step"],
+      "tempo": { "min": 130, "max": 140, "felt": null },
+      "density": 2,
+      "lead": ["timbre","drums"],
+      "function": 0.5,
+      "change": 0.50,
+      "summary": "A dubstep tere és a UK garage svungja hangerő nélkül: elmosott énekfoszlányok, puha basszus, szobányi visszhang. Inkább hallgatásra, mint tömegre.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,0, 0,0,1,0, 0,0,0,1, 0,0,0,0],
+        "snare": [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0],
+        "hat":   [0,0,1,0, 0,1,0,0, 0,0,1,0, 0,1,0,0]
+      },
+      "examples": [],
+      "notes": ""
+    },
+    {
+      "id": "glitch",
+      "name": "Glitch",
+      "family": "electronica",
+      "year": 1998,
+      "rhythmGrid": ["broken"],
+      "tempo": { "min": 90, "max": 130, "felt": null },
+      "density": 3,
+      "lead": ["timbre"],
+      "function": 0.1,
+      "change": 0.85,
+      "summary": "A hiba lesz a hangszer: kattanás, digitális törés, elvágott minta. Nincs állandó rács, a ritmus a hibák elrendezéséből áll össze.",
+      "externalInfluences": [],
+      "drumPattern": {
+        "kick":  [1,0,0,1, 0,0,0,0, 0,1,0,0, 0,0,1,0],
+        "snare": [0,0,1,0, 1,0,0,1, 0,0,0,1, 0,0,0,0],
+        "hat":   [0,1,0,0, 0,1,1,0, 1,0,0,1, 0,1,0,1]
+      },
       "examples": [],
       "notes": ""
     }

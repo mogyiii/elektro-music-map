@@ -31,9 +31,11 @@ Utána nyisd meg a kiírt címet.
 | `lib/timeline.js` | korszakok, pályák, pozíció adott évben |
 | `lib/mds.js` | 2D beágyazás a távolságokból |
 | `lib/layout.js` | címkeelrendezés, arányos beillesztés |
+| `lib/hull.js` | konvex burok és a köré rajzolt lágy folt (családok) |
 | `lib/detail.js` | adatlapok |
+| `lib/i18n.js` | nyelvek: minden felületi szöveg, a tengelyek és a korszakcímkék fordítása |
 | `data/` | a műfajok, élek és tengelyek – [formátumleírás](data/README.md) |
-| `data/validate.mjs` | adatellenőrző: `node data/validate.mjs` |
+| `data/validate.mjs` | adat- és fordításellenőrző: `node data/validate.mjs` |
 
 ## Mi van kész
 
@@ -50,6 +52,11 @@ az közel kerül. Rajta:
   a térkép alatt, a kiválasztott műfaj kapcsolatai kiemelve
 - *hiányzó rések* (narancs szaggatott): két közel álló műfaj, akik közt üres a hely.
   Az adott évre számolódik újra
+- *családok* (lágy folt a tagok köré, a nevével alatta): nagyobb összefoglaló halmazok,
+  Ishkur „scene" címkéihez hasonlóan. A tagság leszármazás szerinti, a pozíció hangzás
+  szerinti – ahol idegen műfaj esik a folton belülre, az a látnivaló, nem hiba
+  (a techno a house foltjában ül, a hard techno a hardcore-éban). Évcsúszkára
+  újraszámolódik, kapcsolóval kikapcsolható
 - *tengelysúly-csúszkák*: a súlyok átállításával más térkép jön ki
 - *érzett tempó* kapcsoló: a half-time műfajok a valódi érzetük szerint (dubstep 140 helyett 70)
 
@@ -60,6 +67,17 @@ A beágyazás **egyszer** fut, az összes műfaj összes korszakán – nem éve
 (mit vettek el / helyeztek át / adtak hozzá). Csillagtérképen a legközelebbi szomszédok is,
 megjelölve, ahol nincs köztük származási szál – az a hasonlóság nem leszármazásból jön.
 A rés-vonalra kattintva pedig az jön elő, hogy mi kerülne oda.
+
+**Nyelvválasztó** – magyar és angol, a fejléc jobb szélén. Első nyitáskor a böngésző
+nyelve dönt, utána a választás megmarad (`localStorage`). Váltáskor a nézetek újraépülnek,
+de a beállításaik – év, tengelysúlyok, kapcsolók, kiválasztott műfaj – megmaradnak.
+
+Ami fordítva van: minden felületi szöveg, a tengelyek neve és kategóriái, valamint a
+korszakcímkék. Ami **nem**: a műfajok saját szövege – összefoglaló, korszak-jegyzet,
+él-jegyzet és az átmenetek felsorolásai –, ezek az adatban állnak, egyelőre csak magyarul.
+Angol felületen tehát vegyes nyelvű az adatlap. Új nyelv felvétele két fájlt érint:
+`lib/i18n.js` – egy-egy blokk a `STRINGS`, `AXES` és `ERA_LABELS` táblákban, plusz a nyelv
+kódja a `LANGS` listában –, és `index.html`, ahol a kapcsoló gombjai vannak.
 
 ## Mi nincs még kész
 
